@@ -1,0 +1,38 @@
+id: com.kendryte.CanMVIDE
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+command: canmvide
+finish-args:
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --filesystem=/run/media
+  - --filesystem=/mnt
+  - --device=usb
+  - --share=network
+modules:
+  - name: krb5
+    buildsystem: autotools
+    sources:
+      - type: archive
+        strip-components: 2
+        url: https://kerberos.org/dist/krb5/1.22/krb5-1.22.2.tar.gz
+        sha256: 3243ffbc8ea4d4ac22ddc7dd2a1dc54c57874c40648b60ff97009763554eaf13
+  - name: canmvide
+    buildsystem: simple
+    build-commands:
+      - mkdir -p ${FLATPAK_DEST}/share
+      - cp -r -t ${FLATPAK_DEST} bin lib
+      - cp -r share/qtcreator -t ${FLATPAK_DEST}/share
+      - install -Dm644 -t ${FLATPAK_DEST}/share/applications com.kendryte.CanMVIDE.desktop
+      - 'for icondir in share/icons/hicolor/*; do
+           mkdir -p ${FLATPAK_DEST}/${icondir}/apps;
+           cp ${icondir}/apps/CanMV-canmvide.png ${FLATPAK_DEST}/${icondir}/apps/com.kendryte.CanMVIDE.png;
+         done'
+    sources:
+      - type: archive
+        strip-components: 0
+        url: https://github.com/kendryte/canmv_ide/releases/download/v4.0.9/canmv-ide-linux-x86_64-4.0.9-installer-archive.7z
+        sha256: 559c4f9607565e37361ad29dbccc7d6e3a0b81d10e515d527fe68a83e232255b
+      - type: file
+        path: com.kendryte.CanMVIDE.desktop
