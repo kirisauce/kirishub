@@ -8,7 +8,7 @@ finish-args:
   - --socket=fallback-x11
   - --filesystem=/run/media
   - --filesystem=/mnt
-  - --device=usb
+  - --device=all
   - --share=network
 modules:
   - name: krb5

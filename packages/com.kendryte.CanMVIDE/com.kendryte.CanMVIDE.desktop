@@ -7,6 +7,5 @@ Exec=canmvide %F
 Icon=com.kendryte.CanMVIDE
 Terminal=false
 Categories=Development;IDE;Electronics;
-MimeType=text/x-python;
 Keywords=embedded electronics;electronics;microcontroller;micropython;computer vision;machine vision;
 StartupWMClass=com.kendryte.CanMVIDE
