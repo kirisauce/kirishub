@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=MaixVision
+Exec=maixvision
+Terminal=false
+Type=Application
+Icon=com.sipeed.MaixVision
+StartupWMClass=MaixVision
+X-AppImage-Version=1.2.2
+Comment=MaixVision
+Categories=Utility;Development;

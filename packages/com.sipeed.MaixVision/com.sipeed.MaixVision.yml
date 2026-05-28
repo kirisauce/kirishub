@@ -1,0 +1,45 @@
+id: com.sipeed.MaixVision
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+command: maixvision
+finish-args:
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --filesystem=/run/media
+  - --filesystem=/mnt
+  - --device=all
+  - --share=network
+modules:
+  - name: maixvision
+    buildsystem: simple
+    build-commands:
+      # Extract AppImage
+      - chmod a+x MaixVision.AppImage
+      - ./MaixVision.AppImage --appimage-extract
+      # Copy contents
+      - install -Dm644 com.sipeed.MaixVision.desktop ${FLATPAK_DEST}/share/applications/com.sipeed.MaixVision.desktop
+      - install -Dm644 squashfs-root/maixvision.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/com.sipeed.MaixVision.png
+      - mkdir -p ${FLATPAK_DEST}/lib
+      - cp -r squashfs-root -T ${FLATPAK_DEST}/lib/maixvision
+      # Create wrapper script
+      - ./create-maixvision-wrapper
+      - install -Dm755 maixvision ${FLATPAK_DEST}/bin/maixvision
+    sources:
+      - type: file
+        url: https://cdn.sipeed.com/maixvision/1.2.2/MaixVision-1.2.2.AppImage
+        sha256: 28efe3099aea9cf6ab0341296bf970121723c96db7bcc932f0e803643e8a777e
+        dest-filename: MaixVision.AppImage
+      - type: file
+        path: com.sipeed.MaixVision.desktop
+      - type: script
+        dest-filename: create-maixvision-wrapper
+        commands:
+          - 'cat > maixvision <<EOF'
+          - '  export APPDIR=${FLATPAK_DEST}/lib/maixvision'
+          - '  if [[ ! -z \$WAYLAND_DISPLAY ]]'
+          - '  then'
+          - '    flags="--ozone-platform=wayland \$flags"'
+          - '  fi'
+          - '  exec ${FLATPAK_DEST}/lib/maixvision/AppRun --no-sandbox \$flags \$@'
+          - 'EOF'
