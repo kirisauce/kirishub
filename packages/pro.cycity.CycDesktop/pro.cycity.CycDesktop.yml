@@ -1,0 +1,55 @@
+id: pro.cycity.CycDesktop
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+command: cyc-desktop
+rename-icon: cyc-desktop
+finish-args:
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --socket=pulseaudio
+  - --socket=session-bus
+  - --device=dri
+  - --share=network
+modules:
+  - name: cycity
+    buildsystem: simple
+    build-commands:
+      # Extract AppImage
+      - chmod a+x cyc-desktop.AppImage
+      - ./cyc-desktop.AppImage --appimage-extract
+      # Install files
+      - mv squashfs-root/usr/* -t ${FLATPAK_DEST}
+      - rmdir squashfs-root/usr
+
+      - mkdir -p ${FLATPAK_DEST}/share/applications/
+      - install -Dm644 pro.cycity.CycDesktop.desktop -t ${FLATPAK_DEST}/share/applications/
+      - mkdir -p ${FLATPAK_DEST}/share/metainfo/
+      - install -Dm644 pro.cycity.CycDesktop.metainfo.xml ${FLATPAK_DEST}/share/metainfo/pro.cycity.CycDesktop.metainfo.xml
+
+      - mkdir -p ${FLATPAK_DEST}/lib/cyc-desktop/
+      - mv squashfs-root/* -t ${FLATPAK_DEST}/lib/cyc-desktop/
+      # Create wrapper script
+      - ./create-wrapper
+      - install -Dm755 cyc-desktop ${FLATPAK_DEST}/bin/cyc-desktop
+    sources:
+      - type: file
+        url: https://pcapp.cycity.pro/d/Public/Program/Linux/cyc-desktop-1.0.8.AppImage
+        dest-filename: cyc-desktop.AppImage
+        sha256: a769dc2381791e72a09ef1bddf2354ca00c3b8f44581594308dd86efb02f454b
+      - type: file
+        path: pro.cycity.CycDesktop.desktop
+      - type: file
+        path: pro.cycity.CycDesktop.metainfo.xml
+      - type: script
+        dest-filename: create-wrapper
+        commands:
+          - 'cat > cyc-desktop <<EOF'
+          - '#!/usr/bin/env bash'
+          - 'export APPDIR=${FLATPAK_DEST}/lib/cyc-desktop/'
+          - 'flags=()'
+          - 'if [ ! -z "\$WAYLAND_DISPLAY" ]; then'
+          - '  flags+=--ozone-platform=wayland'
+          - 'fi'
+          - 'exec \$APPDIR/AppRun --no-sandbox \$flags \$@'
+          - 'EOF'

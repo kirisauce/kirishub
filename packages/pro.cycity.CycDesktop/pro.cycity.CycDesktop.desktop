@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Cycity Desktop
+Exec=cyc-desktop %U
+Terminal=false
+Type=Application
+Icon=pro.cycity.CycDesktop
+StartupWMClass=pro.cycity.CycDesktop
+X-AppImage-Version=1.0.8
+Comment=次元城动漫 - 充满对另一个世界的无尽幻想！
+Categories=AudioVideo;Video;TV;
