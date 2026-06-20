@@ -31,6 +31,11 @@ modules:
         url: https://cdn.sipeed.com/maixvision/1.2.2/MaixVision-1.2.2.AppImage
         sha256: 28efe3099aea9cf6ab0341296bf970121723c96db7bcc932f0e803643e8a777e
         dest-filename: MaixVision.AppImage
+        x-checker-data:
+          type: json
+          url: 'https://cdn.sipeed.com/maixvision/latest-linux.json'
+          version-query: '.version'
+          url-query: '.version as $v | .files[] | select(.url | test("\\.AppImage$")) | "https://cdn.sipeed.com/maixvision/\($v)/\(.url)"'
       - type: file
         path: com.sipeed.MaixVision.desktop
       - type: file

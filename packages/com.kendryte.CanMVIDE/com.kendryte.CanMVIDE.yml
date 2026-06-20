@@ -44,6 +44,11 @@ modules:
         strip-components: 0
         url: https://github.com/kendryte/canmv_ide/releases/download/v4.0.9/canmv-ide-linux-x86_64-4.0.9-installer-archive.7z
         sha256: 559c4f9607565e37361ad29dbccc7d6e3a0b81d10e515d527fe68a83e232255b
+        x-checker-data:
+          type: html
+          url: https://kendryte-download.canaan-creative.com/developer/tools/canmv_ide_k230/
+          version-pattern: '<a href="([\d\.]+)/">'
+          url-template: 'https://kendryte-download.canaan-creative.com/developer/tools/canmv_ide_k230/$version/canmv-ide-linux-x86_64-$version-installer-archive.7z'
       - type: file
         path: com.kendryte.CanMVIDE.desktop
       - type: file
