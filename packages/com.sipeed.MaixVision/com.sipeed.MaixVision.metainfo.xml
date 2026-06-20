@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.sipeed.MaixVision</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary</project_license>
+  <name>MaixVision</name>
+  <summary>Programming IDE and graphical block programming tool for Sipeed Maix ecosystem</summary>
+  <description>
+    <p>MaixVision is a development tool specifically designed for the Sipeed Maix ecosystem. It supports MaixPy (Python) programming and graphical block programming, enabling rapid development of AI vision and audio applications on Maix series edge devices including MaixCAM.</p>
+    <p>Key features:</p>
+    <ul>
+      <li>MaixPy Python programming with online running and debugging on connected devices</li>
+      <li>Graphical block programming interface for visual program construction</li>
+      <li>Real-time image preview that synchronizes with the device display output</li>
+      <li>Built-in device terminal for SSH access and command-line control</li>
+      <li>Device file manager for uploading, downloading, and managing on-device files</li>
+      <li>Application packaging and one-click installation for offline deployment</li>
+      <li>AI vision development support including object detection, face recognition, OCR, and more</li>
+      <li>AI audio capabilities including speech recognition, keyword detection, and speech synthesis</li>
+      <li>Large language model (LLM) integration support</li>
+      <li>Seamless integration with MaixHub online AI training platform</li>
+    </ul>
+  </description>
+  <developer id="com.sipeed">
+    <name>Sipeed Technology</name>
+  </developer>
+  <url type="homepage">https://wiki.sipeed.com/maixvision</url>
+  <url type="bugtracker">https://github.com/sipeed/maixpy/issues</url>
+  <url type="donation">https://github.com/sipeed/maixpy</url>
+  <project_group>Sipeed</project_group>
+  <releases>
+    <release version="1.2.2" date="2025-06-30"/>
+  </releases>
+  <screenshots>
+    <screenshot type="default">
+      <caption>MaixVision main interface with code editor and device preview</caption>
+    </screenshot>
+  </screenshots>
+  <categories>
+    <category>Development</category>
+    <category>IDE</category>
+    <category>Electronics</category>
+  </categories>
+  <keywords>
+    <keyword>sipeed</keyword>
+    <keyword>maixpy</keyword>
+    <keyword>maixcam</keyword>
+    <keyword>maix</keyword>
+    <keyword>ai</keyword>
+    <keyword>computer vision</keyword>
+    <keyword>machine vision</keyword>
+    <keyword>embedded</keyword>
+    <keyword>micropython</keyword>
+    <keyword>risc-v</keyword>
+    <keyword>edge ai</keyword>
+    <keyword>electronics</keyword>
+  </keywords>
+  <content_rating type="oars-1.1"/>
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </recommends>
+</component>

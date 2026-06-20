@@ -34,6 +34,7 @@ modules:
       - cp -r -t ${FLATPAK_DEST} bin lib
       - cp -r share/qtcreator -t ${FLATPAK_DEST}/share
       - install -Dm644 -t ${FLATPAK_DEST}/share/applications com.kendryte.CanMVIDE.desktop
+      - install -Dm644 -t ${FLATPAK_DEST}/share/metainfo com.kendryte.CanMVIDE.metainfo.xml
       - 'for icondir in share/icons/hicolor/*; do
            mkdir -p ${FLATPAK_DEST}/${icondir}/apps;
            cp ${icondir}/apps/CanMV-canmvide.png ${FLATPAK_DEST}/${icondir}/apps/com.kendryte.CanMVIDE.png;
@@ -45,3 +46,5 @@ modules:
         sha256: 559c4f9607565e37361ad29dbccc7d6e3a0b81d10e515d527fe68a83e232255b
       - type: file
         path: com.kendryte.CanMVIDE.desktop
+      - type: file
+        path: com.kendryte.CanMVIDE.metainfo.xml
