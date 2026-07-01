@@ -9,27 +9,32 @@
   <summary xml:lang="zh-CN">次元城动漫桌面端 - 海量高画质番剧，尽在次元城！</summary>
   <description>
     <p>Cycity Desktop is a comprehensive anime viewing application built for anime enthusiasts. It provides access to a vast collection of domestic and international anime resources, covering classic series, ongoing simulcasts, and independent productions. The app features ad-free high-definition playback with support for various genres including action, romance, suspense, and sci-fi.</p>
-    <p xml:lang="zh-CN">次元城动漫电脑版是一款专为动漫爱好者打造的全方位观看软件，提供海量国内外动漫资源，涵盖经典老番、最新连载及独立制作作品。支持高清无广告流畅播放，包含热血、恋爱、悬疑、科幻等多种类型。软件以清爽界面、超清画质和便捷操作为特色，提供个性化观看体验。</p>
     <p>Key features:</p>
     <ul>
       <li>Vast anime library covering Japanese, Korean, Chinese, and more anime productions across all genres</li>
-      <li xml:lang="zh-CN">海量动漫资源库，涵盖日本、韩国、中国等多国动漫作品</li>
-      <li>Weekly synchronized updates ensuring access to the latest episodes</li>
-      <li xml:lang="zh-CN">每周同步更新，第一时间观看最新动漫内容</li>
+      <li>Weekly synchronized updates ensuring access to the latest episodes in a timely manner</li>
       <li>Multiple quality options for smooth HD playback adapted to network conditions</li>
-      <li xml:lang="zh-CN">多种清晰度选项，根据网络状况选择最佳画质</li>
       <li>Clean, ad-free interface for uninterrupted viewing experience</li>
-      <li xml:lang="zh-CN">界面干净清爽，无广告弹窗干扰</li>
       <li>Smart recommendation system based on viewing history and preferences</li>
-      <li xml:lang="zh-CN">智能推荐系统，根据观看历史发现更多感兴趣内容</li>
       <li>Danmaku (bullet comments) system for real-time interactive viewing</li>
-      <li xml:lang="zh-CN">弹幕互动系统，与其他观众实时交流</li>
       <li>Advanced search with category filters by genre, year, region, and popularity</li>
-      <li xml:lang="zh-CN">关键词搜索与分类筛选，支持题材、年份、地区筛选</li>
       <li>Built-in ranking charts and weekly release schedule for upcoming episodes</li>
-      <li xml:lang="zh-CN">内置排行榜与排期表，精准掌握追番日程</li>
       <li>Playback speed control and subtitle switching support</li>
-      <li xml:lang="zh-CN">倍速播放与字幕切换支持</li>
+    </ul>
+  </description>
+  <description xml:lang="zh-CN">
+    <p>次元城动漫电脑版是一款专为动漫爱好者打造的全方位观看软件，提供海量国内外动漫资源，涵盖经典老番、最新连载及独立制作作品。支持高清无广告流畅播放，包含热血、恋爱、悬疑、科幻等多种类型。软件以清爽界面、超清画质和便捷操作为特色，提供个性化观看体验。</p>
+    <p>主要功能：</p>
+    <ul>
+      <li>海量动漫资源库，涵盖日本、韩国、中国等多国动漫作品</li>
+      <li>每周同步更新，第一时间观看最新动漫内容</li>
+      <li>多种清晰度选项，根据网络状况选择最佳画质</li>
+      <li>界面干净清爽，无广告弹窗干扰</li>
+      <li>智能推荐系统，根据观看历史发现更多感兴趣内容</li>
+      <li>弹幕互动系统，与其他观众实时交流</li>
+      <li>关键词搜索与分类筛选，支持题材、年份、地区筛选</li>
+      <li>内置排行榜与排期表，精准掌握追番日程</li>
+      <li>倍速播放与字幕切换支持</li>
     </ul>
   </description>
   <developer id="pro.cycity">
@@ -38,11 +43,17 @@
   </developer>
   <url type="homepage">https://www.cycity.pro/</url>
   <url type="bugtracker">https://github.com/CycityTeam/cyc-desktop/issues</url>
-  <launchable type="desktop-id">pro.cycity.CycDesktop.desktop</launchable>
+  <url type="donation">https://github.com/CycityTeam/cyc-desktop</url>
   <project_group>Cycity</project_group>
   <releases>
     <release version="1.0.8" date="2026-04-06"/>
   </releases>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Cycity Desktop main interface with anime browsing</caption>
+      <caption xml:lang="zh-CN">次元城动漫主界面 - 浏览番剧</caption>
+    </screenshot>
+  </screenshots>
   <categories>
     <category>AudioVideo</category>
     <category>Video</category>
@@ -56,12 +67,14 @@
     <keyword>streaming</keyword>
     <keyword>cyc-desktop</keyword>
     <keyword>cycdm</keyword>
-    <keyword xml:lang="zh-CN">次元城</keyword>
-    <keyword xml:lang="zh-CN">动漫</keyword>
-    <keyword xml:lang="zh-CN">番剧</keyword>
-    <keyword xml:lang="zh-CN">追番</keyword>
-    <keyword xml:lang="zh-CN">弹幕</keyword>
-    <keyword xml:lang="zh-CN">动画</keyword>
+  </keywords>
+  <keywords xml:lang="zh-CN">
+    <keyword>次元城</keyword>
+    <keyword>动漫</keyword>
+    <keyword>番剧</keyword>
+    <keyword>追番</keyword>
+    <keyword>弹幕</keyword>
+    <keyword>动画</keyword>
   </keywords>
   <content_rating type="oars-1.1"/>
   <recommends>
