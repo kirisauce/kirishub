@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.openutau.OpenUtau</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>OpenUtau</name>
+  <summary>Open singing synthesis platform / Open source UTAU successor</summary>
+  <summary xml:lang="zh-CN">开放式歌声合成平台 / 开源 UTAU 后继者</summary>
+  <summary xml:lang="ja">オープンソース歌声合成プラットフォーム / UTAU後継ソフトウェア</summary>
+  <description>
+    <p>OpenUtau is a free, open-source singing synthesis editor made for the UTAU community. It aims to solve problems with fewer steps and provides a modern user experience for creating vocal covers and original songs.</p>
+    <p>Key features:</p>
+    <ul>
+      <li>Modern user interface with intuitive mouse and keyboard navigation</li>
+      <li>Feature-rich MIDI editor for creating songs and covers</li>
+      <li>Expressive vibrato editor for fine-tuning vocal performances</li>
+      <li>Pre-rendering and built-in resamplers for quick preview</li>
+      <li>Support for importing VSQX (Vocaloid 4) tracks</li>
+      <li>Selective backward compatibility with UTAU</li>
+      <li>Extensible real-time phonetic editing with phonemizers for VCV, CVVC, Arpasing, and more</li>
+      <li>Built-in WORLDLINE-R resampler with curve tuning support</li>
+      <li>Internationalisation with UI translation and file system encoding support</li>
+      <li>ENUNU AI singer support</li>
+      <li>Easy-to-use plugin system with comprehensive API</li>
+      <li>Versatile resampling engine interface compatible with most UTAU resamplers</li>
+      <li>Cross-platform support: Windows (32/64-bit), macOS, and Linux</li>
+    </ul>
+  </description>
+  <description xml:lang="zh-CN">
+    <p>OpenUtau 是一款为 UTAU 社区打造的自由开源歌声合成编辑器，旨在以更简洁的方式解决创作问题，为制作虚拟歌手歌曲和翻唱作品提供现代化的用户体验。</p>
+    <p>主要功能：</p>
+    <ul>
+      <li>现代化用户界面，支持鼠标和键盘快捷键操作</li>
+      <li>功能丰富的 MIDI 编辑器，轻松创作歌曲和翻唱</li>
+      <li>表现力丰富的颤音编辑器，精细调整歌声表现</li>
+      <li>预渲染和内置重采样器，快速预览效果</li>
+      <li>支持导入 VSQX（Vocaloid 4）工程文件</li>
+      <li>选择性兼容 UTAU 音源库</li>
+      <li>可扩展的实时音素编辑，支持 VCV、CVVC、Arpasing 等多种音素系统</li>
+      <li>内置 WORLDLINE-R 重采样器，支持曲线调音</li>
+      <li>国际化支持，包括界面翻译和多语言文件编码</li>
+      <li>支持 ENUNU AI 歌手音源</li>
+      <li>简单易用的插件系统，提供完善的 API 文档</li>
+      <li>强大的重采样引擎接口，兼容大部分 UTAU 重采样器</li>
+      <li>跨平台支持：Windows（32/64 位）、macOS 和 Linux</li>
+    </ul>
+  </description>
+  <description xml:lang="ja">
+    <p>OpenUtauは、UTAUコミュニティのためのフリーでオープンソースな歌声合成エディターです。少ない手順で問題を解決することを目指し、ボーカルカバーやオリジナル曲制作のためのモダンなユーザー体験を提供します。</p>
+    <p>主な機能：</p>
+    <ul>
+      <li>モダンなユーザーインターフェース、直感的なマウス・キーボード操作</li>
+      <li>充実のMIDIエディターで楽曲制作やカバー作成</li>
+      <li>表現力豊かなビブラートエディターで歌声を微調整</li>
+      <li>プリレンダリングと内蔵リサンプラーで素早くプレビュー</li>
+      <li>VSQX（Vocaloid 4）トラックのインポートに対応</li>
+      <li>UTAUとの選択的な互換性を維持</li>
+      <li>拡張可能なリアルタイム音素編集（VCV、CVVC、Arpasing等）</li>
+      <li>内蔵WORLDLINE-Rリサンプラー、カーブチューニング対応</li>
+      <li>国際化対応：UI翻訳とファイルシステムエンコーディング対応</li>
+      <li>ENUNU AI歌声合成に対応</li>
+      <li>使いやすいプラグインシステムと充実のAPI</li>
+      <li>ほとんどのUTAUリサンプラーと互換性のある多用途エンジン</li>
+      <li>クロスプラットフォーム対応：Windows（32/64ビット）、macOS、Linux</li>
+    </ul>
+  </description>
+  <developer id="com.openutau">
+    <name>OpenUtau Team</name>
+    <name xml:lang="zh-CN">OpenUtau 团队</name>
+  </developer>
+  <url type="homepage">http://www.openutau.com/</url>
+  <url type="bugtracker">https://github.com/openutau/OpenUtau/issues</url>
+  <url type="donation">https://github.com/openutau/OpenUtau</url>
+  <project_group>OpenUtau</project_group>
+  <releases>
+    <release version="0.1.568" date="2026-03-18"/>
+  </releases>
+  <screenshots>
+    <screenshot type="default">
+      <caption>OpenUtau main editor interface with MIDI track and vocal synthesis</caption>
+      <caption xml:lang="zh-CN">OpenUtau 主编辑器界面，含 MIDI 轨道和歌声合成</caption>
+      <caption xml:lang="ja">OpenUtau メインエディター画面（MIDIトラックと歌声合成）</caption>
+    </screenshot>
+  </screenshots>
+  <categories>
+    <category>AudioVideo</category>
+    <category>Audio</category>
+    <category>Music</category>
+  </categories>
+  <keywords>
+    <keyword>openutau</keyword>
+    <keyword>utau</keyword>
+    <keyword>synthesizer</keyword>
+    <keyword>singing</keyword>
+    <keyword>vocaloid</keyword>
+    <keyword>music</keyword>
+    <keyword>midi</keyword>
+    <keyword>vocal synthesis</keyword>
+    <keyword>voice synthesis</keyword>
+    <keyword>resampler</keyword>
+    <keyword>phonemizer</keyword>
+    <keyword>enunu</keyword>
+  </keywords>
+  <keywords xml:lang="zh-CN">
+    <keyword>openutau</keyword>
+    <keyword>utau</keyword>
+    <keyword>歌声合成</keyword>
+    <keyword>音乐</keyword>
+    <keyword>MIDI</keyword>
+    <keyword>声音合成</keyword>
+    <keyword>调音</keyword>
+    <keyword>虚拟歌手</keyword>
+    <keyword>重采样器</keyword>
+    <keyword>音素编辑</keyword>
+  </keywords>
+  <keywords xml:lang="ja">
+    <keyword>openutau</keyword>
+    <keyword>utau</keyword>
+    <keyword>歌声合成</keyword>
+    <keyword>歌唱合成</keyword>
+    <keyword>音楽</keyword>
+    <keyword>MIDI</keyword>
+    <keyword>ボーカルシンセシス</keyword>
+    <keyword>調声</keyword>
+    <keyword>音声合成</keyword>
+    <keyword>リサンプラー</keyword>
+    <keyword>音素編集</keyword>
+    <keyword>enunu</keyword>
+  </keywords>
+  <content_rating type="oars-1.1"/>
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </recommends>
+</component>

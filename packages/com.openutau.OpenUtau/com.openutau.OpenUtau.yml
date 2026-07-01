@@ -1,0 +1,50 @@
+id: com.openutau.OpenUtau
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+command: openutau
+finish-args:
+  - --socket=x11
+  - --device=all
+  - --share=network
+modules:
+  - name: openutau
+    buildsystem: simple
+    build-commands:
+      # Install desktop file, metainfo, and icon
+      - install -Dm644 com.openutau.OpenUtau.desktop ${FLATPAK_DEST}/share/applications/com.openutau.OpenUtau.desktop
+      - install -Dm644 com.openutau.OpenUtau.metainfo.xml ${FLATPAK_DEST}/share/metainfo/com.openutau.OpenUtau.metainfo.xml
+      - install -Dm644 com.openutau.OpenUtau.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/com.openutau.OpenUtau.png
+
+      - mkdir -p ${FLATPAK_DEST}/lib/openutau ${FLATPAK_DEST}/bin
+
+      - bash ./create-wrapper
+      - install -Dm755 openutau-wrapper ${FLATPAK_DEST}/bin/openutau
+      - rm ./create-wrapper
+
+      - mv ./* -t ${FLATPAK_DEST}/lib/openutau
+    sources:
+      - type: archive
+        url: https://github.com/stakira/OpenUtau/releases/latest/download/OpenUtau-linux-x64.zip
+        sha256: 4ab8d9ff696710b270449cd9480da52dc2d6b2739ccb6fe3731a0bf5e1f454dd
+        only-arches:
+          - x86_64
+        x-checker-data:
+          type: json
+          url: 'https://api.github.com/repos/openutau/OpenUtau/releases/latest'
+          version-query: '.tag_name'
+          url-query: ".assets[] | select(.name==\"OpenUtau-linux-x64.zip\") | .browser_download_url"
+      - type: file
+        path: com.openutau.OpenUtau.desktop
+      - type: file
+        path: com.openutau.OpenUtau.metainfo.xml
+      - type: file
+        path: com.openutau.OpenUtau.png
+      - type: script
+        dest-filename: create-wrapper
+        commands:
+          - 'cat <<EOF > openutau-wrapper'
+          - 'APPDIR=${FLATPAK_DEST}/lib/openutau'
+          - 'cd "\$APPDIR"'
+          - 'exec \$APPDIR/OpenUtau'
+          - 'EOF'

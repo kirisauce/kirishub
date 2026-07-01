@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Name=OpenUtau
+GenericName=Open Singing Synthesis Platform
+GenericName[zh_CN]=开放式歌声合成平台
+GenericName[ja]=オープン歌声合成プラットフォーム
+Comment=Open singing synthesis platform / Open source UTAU successor
+Comment[zh_CN]=开放式歌声合成平台 / 开源 UTAU 后继者
+Comment[ja]=オープンソース歌声合成プラットフォーム / オープンソースUTAU後継
+Exec=openutau %F
+Icon=com.openutau.OpenUtau
+Terminal=false
+Categories=AudioVideo;Audio;Music;
+Keywords=openutau;utau;synthesizer;singing;vocaloid;music;midi;vocal synthesis;voice synthesis;
+Keywords[zh_CN]=openutau;utau;歌声合成;音乐;MIDI;声音合成;调音;虚拟歌手;
+Keywords[ja]=openutau;utau;歌声合成;歌唱合成;音楽;MIDI;ボーカルシンセシス;調声;音声合成;
+StartupNotify=true
+StartupWMClass=com.openutau.OpenUtau
