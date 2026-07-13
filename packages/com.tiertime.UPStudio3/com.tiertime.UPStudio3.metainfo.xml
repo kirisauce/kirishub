@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.tiertime.UPStudio3</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary</project_license>
+  <name>UP Studio 3</name>
+  <summary>The 3D model printing program for Tiertime 3D printers</summary>
+  <summary xml:lang="zh-CN">太尔时代 3D 打印机专用的模型处理与打印软件</summary>
+  <description>
+    <p>UP Studio 3 is a professional 3D model processing and printing software designed specifically for Tiertime 3D printers. It provides an intuitive interface for preparing, slicing, and managing 3D print jobs with full control over printer parameters.</p>
+    <p>Key features:</p>
+    <ul>
+      <li>3D model loading, manipulation, and positioning on the print bed</li>
+      <li>Advanced slicing engine with customizable print parameters</li>
+      <li>Real-time printer monitoring and control</li>
+      <li>Support for multiple Tiertime 3D printer models</li>
+      <li>Filament management and calibration tools</li>
+      <li>Print job queue and history management</li>
+      <li>Multi-language interface support</li>
+      <li>Bundled Wand utility for 3D scanning</li>
+    </ul>
+  </description>
+  <description xml:lang="zh-CN">
+    <p>UP Studio 3 是专为太尔时代（Tiertime）3D 打印机设计的专业模型处理与打印软件，提供直观的界面用于准备、切片和管理 3D 打印任务，并可全面控制打印机参数。</p>
+    <p>主要功能：</p>
+    <ul>
+      <li>3D 模型加载、操作和打印平台定位</li>
+      <li>先进的切片引擎，支持自定义打印参数</li>
+      <li>实时打印机监控与控制</li>
+      <li>支持多种太尔时代 3D 打印机型号</li>
+      <li>耗材管理和校准工具</li>
+      <li>打印任务队列和历史管理</li>
+      <li>多语言界面支持</li>
+      <li>附带 Wand 3D 扫描工具</li>
+    </ul>
+  </description>
+  <developer id="com.tiertime">
+    <name>Tiertime</name>
+    <name xml:lang="zh-CN">北京太尔时代科技有限公司</name>
+  </developer>
+  <url type="homepage">https://www.tiertime.cn/</url>
+  <url type="bugtracker">https://www.tiertime.cn/contact-us/</url>
+  <url type="donation">https://www.tiertime.cn/</url>
+  <project_group>Tiertime</project_group>
+  <releases>
+    <release version="3.2.6" date="2024-06-03"/>
+  </releases>
+  <screenshots>
+    <screenshot type="default">
+      <caption>UP Studio 3 main interface with 3D model on print bed</caption>
+      <caption xml:lang="zh-CN">UP Studio 3 主界面，打印平台上的 3D 模型</caption>
+    </screenshot>
+  </screenshots>
+  <categories>
+    <category>Graphics</category>
+    <category>Printing</category>
+    <category>Education</category>
+  </categories>
+  <keywords>
+    <keyword>upstudio</keyword>
+    <keyword>tiertime</keyword>
+    <keyword>3d</keyword>
+    <keyword>3d print</keyword>
+    <keyword>slicer</keyword>
+    <keyword>printing</keyword>
+    <keyword>up</keyword>
+    <keyword>model</keyword>
+  </keywords>
+  <keywords xml:lang="zh-CN">
+    <keyword>upstudio</keyword>
+    <keyword>太尔时代</keyword>
+    <keyword>3D打印</keyword>
+    <keyword>切片</keyword>
+    <keyword>3D模型</keyword>
+    <keyword>打印</keyword>
+  </keywords>
+  <content_rating type="oars-1.1"/>
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </recommends>
+</component>

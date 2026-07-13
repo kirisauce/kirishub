@@ -1,0 +1,62 @@
+id: com.tiertime.UPStudio3
+runtime: org.kde.Platform
+runtime-version: '5.15-25.08'
+sdk: org.kde.Sdk
+command: upstudio3
+finish-args:
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --share=ipc
+  - --device=dri
+  - --device=all
+  - --share=network
+  - --filesystem=home
+  - --socket=pulseaudio
+modules:
+  - name: upstudio3
+    buildsystem: simple
+    build-commands:
+      # Extract deb package
+      - ar x upstudio_3.2-6_amd64.deb
+      - tar xf data.tar.xz
+
+      # Install main application files
+      - mkdir -p ${FLATPAK_DEST}/lib/upstudio
+      - cp -r opt/tiertime/upstudio/* ${FLATPAK_DEST}/lib/upstudio/
+
+      # Install desktop file
+      - install -Dm644 com.tiertime.UPStudio3.desktop ${FLATPAK_DEST}/share/applications/com.tiertime.UPStudio3.desktop
+
+      # Install AppStream metadata
+      - install -Dm644 com.tiertime.UPStudio3.metainfo.xml ${FLATPAK_DEST}/share/metainfo/com.tiertime.UPStudio3.metainfo.xml
+
+      # Install icons
+      - install -Dm644 com.tiertime.UPStudio3.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/com.tiertime.UPStudio3.png
+      - install -Dm644 com.tiertime.UPStudio3.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/com.tiertime.UPStudio3.svg
+
+      # Create wrapper script
+      - ./create-wrapper
+      - install -Dm755 upstudio3-wrapper ${FLATPAK_DEST}/bin/upstudio3
+    sources:
+      - type: archive
+        strip-components: 0
+        url: https://www.tiertime.cn/wp-content/uploads/2024/06/upstudio_3.2-6_amd64.zip
+        sha256: 8194cc59d250dddca3bc689564735e52dd5501472d0ed0cd32efa225c7956d63
+        only-arches:
+          - x86_64
+      - type: file
+        path: com.tiertime.UPStudio3.desktop
+      - type: file
+        path: com.tiertime.UPStudio3.metainfo.xml
+      - type: file
+        path: com.tiertime.UPStudio3.png
+      - type: file
+        path: com.tiertime.UPStudio3.svg
+      - type: script
+        dest-filename: create-wrapper
+        commands:
+          - 'cat <<EOF > upstudio3-wrapper'
+          - 'APPDIR=${FLATPAK_DEST}/lib/upstudio'
+          - 'cd "\$APPDIR"'
+          - 'exec ./UPStudio3 "\$@"'
+          - 'EOF'
