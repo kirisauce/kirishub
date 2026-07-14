@@ -13,6 +13,7 @@ finish-args:
   - --filesystem=home
   - --socket=pulseaudio
   - --env=QT_QPA_PLATFORM=xcb
+  - --env=QT_OPENGL=desktop
 modules:
   - name: upstudio3
     buildsystem: simple
