@@ -4,8 +4,7 @@ runtime-version: '5.15-25.08'
 sdk: org.kde.Sdk
 command: upstudio3
 finish-args:
-  - --socket=wayland
-  - --socket=fallback-x11
+  - --socket=x11
   - --share=ipc
   - --device=dri
   - --device=all
@@ -13,7 +12,6 @@ finish-args:
   - --filesystem=home
   - --socket=pulseaudio
   - --env=QT_QPA_PLATFORM=xcb
-  - --env=QT_OPENGL=desktop
 modules:
   - name: upstudio3
     buildsystem: simple
