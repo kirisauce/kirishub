@@ -3,6 +3,9 @@ runtime: org.kde.Platform
 runtime-version: '5.15-25.08'
 sdk: org.kde.Sdk
 command: upstudio3
+x-udev-rules:
+  rules:
+    - SUBSYSTEM=="usb", ATTR{idVendor}=="4745", ATTR{idProduct}=="2791", TAG+="uaccess"
 finish-args:
   - --socket=x11
   - --share=ipc
