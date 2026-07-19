@@ -51,3 +51,17 @@ modules:
           - '  fi'
           - '  exec ${FLATPAK_DEST}/lib/maixvision/AppRun --no-sandbox \$flags \$@'
           - 'EOF'
+  - name: maixpy
+    buildsystem: simple
+    build-commands:
+      - pip3 install --prefix=${FLATPAK_DEST} *.whl
+    sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/ec/b3/416a4cb9891a99f0cf11cc9e34afd1cf460a4412bc4c0480051d940be3ac/maixpy-4.12.5-cp313-cp313-manylinux2014_x86_64.whl
+        sha256: e8a33ce50d8fceaa83a9338687bf178272bcabcbb363ff4d7dd56d9e9e616e14
+        x-checker-data:
+          type: json
+          url: https://pypi.org/pypi/maixpy/json
+          version-query: .info.version
+          url-query: .urls[] | select(.python_version == "cp313" and .packagetype == "bdist_wheel") | .url
+          timestamp-query: .urls[] | select(.python_version == "cp313" and .packagetype == "bdist_wheel") | .upload_time_iso_8601
