@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Companion
+GenericName=OpenIPC Configuration Tool
+Comment=Official multi-platform configuration tool for OpenIPC cameras
+Exec=companion
+Icon=org.openipc.Companion
+Terminal=false
+Categories=Network;Settings;
+Keywords=openipc;camera;fpv;drone;configurator;telemetry;
+StartupWMClass=org.openipc.Companion

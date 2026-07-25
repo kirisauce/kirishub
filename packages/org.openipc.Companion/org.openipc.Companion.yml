@@ -1,0 +1,50 @@
+id: org.openipc.Companion
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+command: companion
+finish-args:
+  - --socket=x11
+  - --share=ipc
+  - --device=dri
+  - --share=network
+modules:
+  - name: companion
+    buildsystem: simple
+    build-commands:
+      - mkdir -p ${FLATPAK_DEST}/lib/companion
+      - cp -r * ${FLATPAK_DEST}/lib/companion/
+      - rm -f ${FLATPAK_DEST}/lib/companion/create-wrapper ${FLATPAK_DEST}/lib/companion/companion-wrapper
+      - chmod +x ${FLATPAK_DEST}/lib/companion/Companion.DesktopApp
+      - install -Dm644 org.openipc.Companion.desktop ${FLATPAK_DEST}/share/applications/org.openipc.Companion.desktop
+      - install -Dm644 org.openipc.Companion.metainfo.xml ${FLATPAK_DEST}/share/metainfo/org.openipc.Companion.metainfo.xml
+      - install -Dm644 org.openipc.Companion.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/org.openipc.Companion.png
+      - ./create-wrapper
+      - install -Dm755 companion-wrapper ${FLATPAK_DEST}/bin/companion
+    sources:
+      - type: archive
+        url: https://github.com/OpenIPC/companion/releases/download/release-v0.9.5/Companion-linux-x64.zip
+        sha256: 173dc5266e2ca4c031d7e294e0d20dd257697d6e7989db560cb9767772a2923e
+        strip-components: 0
+        only-arches:
+          - x86_64
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/OpenIPC/companion/releases/latest
+          version-query: .tag_name | sub("^release-v"; "")
+          url-query: .assets[] | select(.name=="Companion-linux-x64.zip") | .browser_download_url
+      - type: file
+        path: org.openipc.Companion.desktop
+      - type: file
+        path: org.openipc.Companion.metainfo.xml
+      - type: file
+        path: org.openipc.Companion.png
+      - type: script
+        dest-filename: create-wrapper
+        commands:
+          - 'cat <<''EOF'' > companion-wrapper'
+          - '#!/bin/sh'
+          - 'APPDIR=/app/lib/companion'
+          - 'cd "$APPDIR"'
+          - 'exec ./Companion.DesktopApp "$@"'
+          - 'EOF'

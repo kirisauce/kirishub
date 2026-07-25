@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.openipc.Companion</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>Companion</name>
+  <summary>Official multi-platform configuration tool for OpenIPC cameras</summary>
+  <description>
+    <p>Companion is an official multi-platform configuration tool for OpenIPC cameras, built with Avalonia UI. The app manages camera settings, telemetry, presets, and firmware updates.</p>
+    <p>Key features:</p>
+    <ul>
+      <li>Camera settings management: configure resolution, frame rate, and exposure</li>
+      <li>Telemetry: view real-time metrics like temperature, voltage, and signal strength</li>
+      <li>Setup wizards: guided setup for device and network configuration</li>
+      <li>Multi-platform support: Windows, macOS, Linux, Android, and iOS targets</li>
+      <li>YAML-based configuration files: edit and customize settings with YAML</li>
+    </ul>
+  </description>
+  <developer id="org.openipc">
+    <name>OpenIPC</name>
+  </developer>
+  <url type="homepage">https://openipc.org</url>
+  <url type="bugtracker">https://github.com/OpenIPC/companion/issues</url>
+  <url type="donation">https://opencollective.com/openipc</url>
+  <releases>
+    <release version="0.9.5" date="2026-07-19"/>
+  </releases>
+  <categories>
+    <category>Network</category>
+    <category>Settings</category>
+  </categories>
+  <keywords>
+    <keyword>openipc</keyword>
+    <keyword>camera</keyword>
+    <keyword>fpv</keyword>
+    <keyword>drone</keyword>
+    <keyword>configurator</keyword>
+    <keyword>telemetry</keyword>
+    <keyword>firmware</keyword>
+  </keywords>
+  <content_rating type="oars-1.1"/>
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </recommends>
+</component>
