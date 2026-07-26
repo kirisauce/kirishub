@@ -9,6 +9,21 @@ finish-args:
   - --device=dri
   - --share=network
 modules:
+  - name: iputils
+    buildsystem: meson
+    config-opts:
+      - -DBUILD_ARPING=false
+      - -DBUILD_CLOCKDIFF=false
+      - -DBUILD_MANS=false
+      - -DBUILD_PING=true
+      - -DBUILD_TRACEPATH=false
+      - -DUSE_CAP=false
+      - -DUSE_IDN=false
+      - -DUSE_GETTEXT=false
+    sources:
+      - type: archive
+        url: https://github.com/iputils/iputils/releases/download/20250605/iputils-20250605.tar.gz
+        sha256: 475c643e5f55b302286267b97d3ce0f47ca3489ced8aa0401b1eeb1e68228d6b
   - name: companion
     buildsystem: simple
     build-commands:
@@ -44,6 +59,9 @@ modules:
         commands:
           - 'cat <<''EOF'' > companion-wrapper'
           - '#!/bin/sh'
+          - '# /run is writable tmpfs in Flatpak, use it to provide ping at a path Companion looks for'
+          - 'mkdir -p /run/current-system/sw/bin'
+          - 'ln -sf /app/bin/ping /run/current-system/sw/bin/ping'
           - 'APPDIR=/app/lib/companion'
           - 'cd "$APPDIR"'
           - 'exec ./Companion.DesktopApp "$@"'
