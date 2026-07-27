@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=QGroundControl
+GenericName=Ground Control Station
+Comment=Ground Control Station for MAVLink-enabled drones
+Exec=QGroundControl %F
+Icon=org.mavlink.QGroundControl
+Terminal=false
+Categories=Utility;Education;
+Keywords=drone;UAV;MAVLink;PX4;ArduPilot;ground control station
+StartupWMClass=QGroundControl

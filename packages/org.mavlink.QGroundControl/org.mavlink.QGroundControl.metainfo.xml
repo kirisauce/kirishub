@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.mavlink.QGroundControl</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+  <name>QGroundControl</name>
+  <summary>Ground Control Station for MAVLink-enabled drones</summary>
+  <description>
+    <p>QGroundControl (QGC) is a Ground Control Station (GCS) for UAVs, providing full flight control and mission planning for any MAVLink-enabled drone, including PX4 and ArduPilot platforms.</p>
+    <p>Key features:</p>
+    <ul>
+      <li>Mission planning - plan, edit, and fly autonomous waypoint, survey, and structure-scan missions</li>
+      <li>Live Fly View - real-time flight display with map, instruments, and full vehicle telemetry</li>
+      <li>Vehicle setup - guided wizards for sensor calibration, radio, flight modes, and power</li>
+      <li>Parameter tuning - inspect and edit every vehicle parameter through the Fact System</li>
+      <li>Video streaming - GStreamer-based UDP RTP / RTSP video with recording in the Flight Display</li>
+      <li>Multi-vehicle - connect to and monitor multiple vehicles simultaneously</li>
+      <li>MAVLink tooling - built-in MAVLink Inspector, console, and log download/analysis</li>
+      <li>Cross-platform - Windows, macOS, Linux, Android, and iOS from a single codebase</li>
+    </ul>
+  </description>
+  <developer id="org.qgroundcontrol">
+    <name>QGroundControl</name>
+  </developer>
+  <url type="homepage">https://qgroundcontrol.com/</url>
+  <url type="bugtracker">https://github.com/mavlink/QGroundControl/issues</url>
+  <url type="donation">https://qgroundcontrol.com/</url>
+  <project_group>QGroundControl</project_group>
+  <releases>
+    <release version="5.0.8" date="2025-10-09"/>
+  </releases>
+  <screenshots>
+    <screenshot type="default">
+      <caption>QGroundControl Fly View with map and telemetry</caption>
+    </screenshot>
+  </screenshots>
+  <categories>
+    <category>Utility</category>
+    <category>Education</category>
+  </categories>
+  <keywords>
+    <keyword>QGroundControl</keyword>
+    <keyword>QGC</keyword>
+    <keyword>drone</keyword>
+    <keyword>UAV</keyword>
+    <keyword>MAVLink</keyword>
+    <keyword>PX4</keyword>
+    <keyword>ArduPilot</keyword>
+    <keyword>ground control station</keyword>
+    <keyword>flight control</keyword>
+    <keyword>mission planning</keyword>
+  </keywords>
+  <content_rating type="oars-1.1"/>
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </recommends>
+</component>

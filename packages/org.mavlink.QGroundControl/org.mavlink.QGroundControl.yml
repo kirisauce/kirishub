@@ -1,0 +1,137 @@
+id: org.mavlink.QGroundControl
+runtime: org.kde.Platform
+runtime-version: '6.9'
+sdk: org.kde.Sdk
+command: QGroundControl
+finish-args:
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --share=ipc
+  - --device=dri
+  - --share=network
+  - --socket=pulseaudio
+  - --socket=session-bus
+  - --device=all
+modules:
+  - name: qgroundcontrol
+    buildsystem: simple
+    build-commands:
+      # Apply Qt 6.9+ compatibility patches
+      - patch -p1 -N < fix-qt6.9-resource.patch 2>/dev/null || true
+      - patch -p1 -N < fix-qt6.9-shader.patch 2>/dev/null || true
+      # Configure
+      - |
+        cmake -G Ninja -B _flatpak_build \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_INSTALL_PREFIX=/app \
+          -DQGC_STABLE_BUILD=ON \
+          -DQGC_BUILD_TESTING=OFF \
+          -DQGC_CREATE_APPIMAGE=OFF \
+          -DQGC_BUILD_INSTALLER=OFF \
+          -DQGC_QT_MINIMUM_VERSION=6.8.3 \
+          -DQGC_QT_MAXIMUM_VERSION=6.9.99 \
+          -DCPM_ulog_cpp_SOURCE=/run/build/qgroundcontrol/deps/ulog_cpp \
+          -DCPM_px4-gpsdrivers_SOURCE=/run/build/qgroundcontrol/deps/px4-gpsdrivers \
+          -DCPM_sdl_gamecontrollerdb_SOURCE=/run/build/qgroundcontrol/deps/sdl_gamecontrollerdb \
+          -DCPM_mavlink_SOURCE=/run/build/qgroundcontrol/deps/mavlink \
+          -DCPM_libevents_SOURCE=/run/build/qgroundcontrol/deps/libevents \
+          -DCPM_xz-embedded_SOURCE=/run/build/qgroundcontrol/deps/xz-embedded \
+          -DCPM_geographiclib_SOURCE=/run/build/qgroundcontrol/deps/geographiclib \
+          -DCPM_Shapelib_SOURCE=/run/build/qgroundcontrol/deps/Shapelib \
+          -DCPM_gstreamer_good_plugins_SOURCE=/run/build/qgroundcontrol/deps/gstreamer_good_plugins \
+          -DCPM_SDL2_SOURCE=/run/build/qgroundcontrol/deps/sdl2 \
+          -DCPM_zlib_SOURCE=/run/build/qgroundcontrol/deps/zlib \
+          -Wno-dev
+      # Build
+      - ninja -C _flatpak_build
+      # Install
+      - sed -i '/deploy_qml_app/d' _flatpak_build/cmake_install.cmake 2>/dev/null || true
+      - cmake --install _flatpak_build --config Release
+    sources:
+      - type: git
+        url: https://github.com/mavlink/qgroundcontrol.git
+        tag: v5.0.8
+        commit: e0816c957602789200ae5ba0af45217f0f2f1db4
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/mavlink/QGroundControl/releases/latest
+          tag-query: .tag_name
+          version-query: .tag_name | sub("^v"; "")
+      # --- CPM dependencies (pre-downloaded to avoid network during build) ---
+      - type: git
+        url: https://github.com/PX4/ulog_cpp.git
+        dest: deps/ulog_cpp
+        commit: af366a91cb90a454f8840cc019ae82571cc4cef6
+      - type: git
+        url: https://github.com/PX4/PX4-GPSDrivers.git
+        dest: deps/px4-gpsdrivers
+        commit: 1f6395e2b4f3b6f24523d2ae0c4b04fa00625588
+      - type: git
+        url: https://github.com/mdqinc/SDL_GameControllerDB.git
+        dest: deps/sdl_gamecontrollerdb
+        commit: 58b39858157965a8fda9dd641ccad9dc8b25527a
+      - type: git
+        url: https://github.com/mavlink/c_library_v2.git
+        dest: deps/mavlink
+        commit: 19f9955598af9a9181064619bd2e3c04bd2d848a
+      - type: git
+        url: https://github.com/mavlink/libevents.git
+        dest: deps/libevents
+        commit: 840a88ea226d4eb0fd4c391ce860317422756435
+      - type: git
+        url: https://github.com/tukaani-project/xz-embedded.git
+        dest: deps/xz-embedded
+        commit: ae63ae3a36ed01724674e8f3d750dc47bf125410
+      - type: git
+        url: https://github.com/geographiclib/geographiclib.git
+        dest: deps/geographiclib
+        tag: r2.5
+        commit: 21373d3d5f098a9c069a7a90c120f3daebb9250c
+      - type: git
+        url: https://github.com/OSGeo/shapelib.git
+        dest: deps/Shapelib
+        commit: 50f165e71faf035554b7142349ddbcdc65403abf
+      - type: archive
+        dest: deps/gstreamer_good_plugins
+        url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-1.24.12.tar.xz
+        sha256: d0e66e2f935d1575f6adbef7d0a2b3faba7360344383c51bf0233b39e0489a64
+        strip-components: 1
+      - type: git
+        url: https://github.com/libsdl-org/SDL.git
+        dest: deps/sdl2
+        tag: release-2.32.4
+        commit: 2359383fc187386204c3bb22de89655a494cd128
+      - type: git
+        url: https://github.com/madler/zlib.git
+        dest: deps/zlib
+        commit: e3dc0a85b7032e98380dec011bc8f2c2ee0d8fca
+      # --- Qt 6.9+ compatibility patches ---
+      - type: file
+        path: fix-qt6.9-resource.patch
+      - type: file
+        path: fix-qt6.9-shader.patch
+      # --- Flatpak metadata files ---
+      - type: file
+        path: org.mavlink.QGroundControl.desktop
+      - type: file
+        path: org.mavlink.QGroundControl.metainfo.xml
+      - type: file
+        path: org.mavlink.QGroundControl.png
+    post-install:
+      # Remove cmake-installed files to avoid conflicts with Flatpak App ID naming
+      - rm -f ${FLATPAK_DEST}/share/applications/org.mavlink.qgroundcontrol.desktop
+      - rm -f ${FLATPAK_DEST}/share/metainfo/org.mavlink.qgroundcontrol.appdata.xml
+      - rm -rf ${FLATPAK_DEST}/share/metainfo/org.mavlink.qgroundcontrol.metainfo.xml
+      # Rename icon to match Flatpak app ID
+      - |
+        if [ -f ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/QGroundControl.png ]; then
+            mv ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/QGroundControl.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/org.mavlink.QGroundControl.png
+        fi
+      - |
+        if [ -f ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/QGroundControl.svg ]; then
+            mv ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/QGroundControl.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/org.mavlink.QGroundControl.svg
+        fi
+      # Install our custom desktop entry and metadata with correct App ID naming
+      - install -Dm644 org.mavlink.QGroundControl.desktop ${FLATPAK_DEST}/share/applications/org.mavlink.QGroundControl.desktop
+      - install -Dm644 org.mavlink.QGroundControl.metainfo.xml ${FLATPAK_DEST}/share/metainfo/org.mavlink.QGroundControl.metainfo.xml
+      - install -Dm644 org.mavlink.QGroundControl.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/org.mavlink.QGroundControl.png
