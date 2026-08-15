@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.reasonix.Desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>Reasonix</name>
+  <summary>Open-source AI coding agent you can leave running</summary>
+  <summary xml:lang="zh-CN">开源 AI 编程代理，可持续运行</summary>
+  <description>
+    <p>Reasonix is an open-source AI coding agent you can leave running. One local engine, four ways in — terminal, desktop app, browser, or your editor over ACP. Plan mode, permissions, a workspace sandbox and checkpoints keep long autonomous runs reviewable. A single Go binary, no runtime to install.</p>
+    <p>Key features:</p>
+    <ul>
+      <li>Multi-model agent engine with interactive, print, and run modes</li>
+      <li>Desktop shell, terminal CLI, HTTP+SSE serve, and ACP/editor integrations</li>
+      <li>Plan mode with tool-approval permissions and workspace sandbox</li>
+      <li>Checkpoints, session recovery, and reviewable long-running tasks</li>
+      <li>MCP server management, sub-agents, extensions, and hooks</li>
+      <li>Built-in upgrade mechanism and shell completion</li>
+    </ul>
+  </description>
+  <description xml:lang="zh-CN">
+    <p>Reasonix 是一款开源 AI 编程代理，可以长时间持续运行。一个本地引擎，四种接入方式——终端、桌面应用、浏览器或通过 ACP 接入编辑器。计划模式、权限控制、工作区沙箱和检查点让长时间自主运行保持可审查。单个 Go 二进制，无需安装运行时。</p>
+    <p>主要功能：</p>
+    <ul>
+      <li>多模型代理引擎，支持交互式、打印和 run 模式</li>
+      <li>桌面壳、终端 CLI、HTTP+SSE 服务和 ACP/编辑器集成</li>
+      <li>计划模式，带工具审批权限和工作区沙箱</li>
+      <li>检查点、会话恢复和可审查的长时间任务</li>
+      <li>MCP 服务器管理、子代理、扩展和钩子</li>
+      <li>内置升级机制和 shell 补全</li>
+    </ul>
+  </description>
+  <developer id="io.reasonix">
+    <name>Reasonix Contributors</name>
+  </developer>
+  <url type="homepage">https://reasonix.io</url>
+  <url type="bugtracker">https://github.com/esengine/DeepSeek-Reasonix/issues</url>
+  <url type="donation">https://reasonix.io</url>
+  <project_group>Reasonix</project_group>
+  <releases>
+    <release version="1.21.3" date="2026-08-08"/>
+  </releases>
+  <categories>
+    <category>Development</category>
+    <category>Utility</category>
+  </categories>
+  <keywords>
+    <keyword>reasonix</keyword>
+    <keyword>ai</keyword>
+    <keyword>coding</keyword>
+    <keyword>agent</keyword>
+    <keyword>assistant</keyword>
+    <keyword>ide</keyword>
+    <keyword>autonomous</keyword>
+  </keywords>
+  <keywords xml:lang="zh-CN">
+    <keyword>reasonix</keyword>
+    <keyword>ai</keyword>
+    <keyword>人工智能</keyword>
+    <keyword>编程</keyword>
+    <keyword>代理</keyword>
+    <keyword>助手</keyword>
+    <keyword>自主</keyword>
+  </keywords>
+  <content_rating type="oars-1.1"/>
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </recommends>
+</component>

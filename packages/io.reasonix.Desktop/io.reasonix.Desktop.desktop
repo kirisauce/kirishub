@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Name=Reasonix
+GenericName=AI Coding Agent
+GenericName[zh_CN]=AI 编程代理
+Comment=Open-source AI coding agent you can leave running
+Comment[zh_CN]=开源 AI 编程代理，可持续运行
+Exec=reasonix-launcher
+Icon=io.reasonix.Desktop
+Terminal=false
+Categories=Development;Utility;
+Keywords=reasonix;ai;coding;agent;ide;assistant;autonomous;
+Keywords[zh_CN]=reasonix;ai;人工智能;编程;代理;助手;自主;
+StartupNotify=true
+StartupWMClass=reasonix-desktop

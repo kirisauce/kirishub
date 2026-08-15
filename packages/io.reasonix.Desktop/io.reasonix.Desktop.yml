@@ -1,0 +1,59 @@
+id: io.reasonix.Desktop
+runtime: org.gnome.Platform
+runtime-version: '50'
+sdk: org.gnome.Sdk
+command: reasonix-launcher
+finish-args:
+  # AI coding agent must reach model providers and update servers
+  - --share=network
+  # WebKitGTK (Wails) rendering
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --share=ipc
+  - --device=dri
+  # Wails shell: tray, clipboard, portals
+  - --socket=session-bus
+  # Theme detection (dark/light): let GTK/WebKit read the host
+  # color-scheme through dconf and xdg-desktop-portal
+  - --filesystem=xdg-run/dconf:create
+  - --talk-name=ca.desrt.dconf.DBus
+  - --talk-name=org.freedesktop.portal.*
+  # Accessibility bus for WebKitGTK
+  - --talk-name=org.a11y.Bus
+  # Redirect the app's own state dir into the sandbox
+  # ($HOME/.var/app/io.reasonix.Desktop/.reasonix) so it does not pollute
+  # the real home directory and is removed on uninstall
+  - --persist=.reasonix
+modules:
+  - name: reasonix
+    buildsystem: simple
+    build-commands:
+      # Desktop launcher + Wails shell + CLI sidecar, all in one directory so
+      # reasonix-launcher finds its sibling reasonix-desktop (flat layout).
+      # reasonix-guard is deliberately NOT installed: it is a one-shot legacy
+      # layout migrator that would fail in the Flatpak layout.
+      - install -Dm755 reasonix-launcher ${FLATPAK_DEST}/bin/reasonix-launcher
+      - install -Dm755 reasonix-desktop ${FLATPAK_DEST}/bin/reasonix-desktop
+      - install -Dm755 reasonix ${FLATPAK_DEST}/bin/reasonix
+      # Desktop entry, AppStream metadata, and icon
+      - install -Dm644 io.reasonix.Desktop.desktop ${FLATPAK_DEST}/share/applications/io.reasonix.Desktop.desktop
+      - install -Dm644 io.reasonix.Desktop.metainfo.xml ${FLATPAK_DEST}/share/metainfo/io.reasonix.Desktop.metainfo.xml
+      - install -Dm644 io.reasonix.Desktop.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/io.reasonix.Desktop.png
+    sources:
+      - type: archive
+        strip-components: 0
+        url: https://dl.reasonix.io/desktop-v1.21.3/Reasonix-linux-amd64.tar.gz
+        sha256: 831bc07c865df9d15a23f935287e56eff32f242fee5fc0bfa6ac15335f6ec135
+        only-arches:
+          - x86_64
+        x-checker-data:
+          type: json
+          url: https://dl.reasonix.io/latest/latest.json
+          version-query: '.version | ltrimstr("v")'
+          url-query: '.platforms["linux-amd64"].url'
+      - type: file
+        path: io.reasonix.Desktop.desktop
+      - type: file
+        path: io.reasonix.Desktop.metainfo.xml
+      - type: file
+        path: io.reasonix.Desktop.png
