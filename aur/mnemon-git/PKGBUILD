@@ -1,0 +1,33 @@
+# Maintainer: kirisauce <kirisauce@qq.com>
+
+pkgname=mnemon-git
+pkgver=0.2.2.r0.ge4040e7
+pkgrel=1
+pkgdesc="LLM-supervised persistent memory for AI agents - graph-based recall, cross-session knowledge, single binary (git version)"
+arch=('x86_64' 'aarch64')
+url="https://github.com/mnemon-dev/mnemon"
+license=('Apache-2.0')
+depends=()
+makedepends=('git' 'go')
+provides=('mnemon')
+conflicts=('mnemon' 'mnemon-bin')
+source=("git+https://github.com/mnemon-dev/mnemon.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$srcdir/mnemon"
+  git describe --long --tags --always | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+build() {
+  cd "$srcdir/mnemon"
+  go build -trimpath -ldflags "-s -w -X github.com/mnemon-dev/mnemon/cmd.version=$pkgver" -o mnemon .
+}
+
+package() {
+  cd "$srcdir/mnemon"
+  install -Dm755 mnemon "$pkgdir/usr/bin/mnemon"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+  install -Dm644 CHANGELOG.md "$pkgdir/usr/share/doc/$pkgname/CHANGELOG.md"
+}

@@ -1,0 +1,17 @@
+pkgbase = mnemon-git
+	pkgdesc = LLM-supervised persistent memory for AI agents - graph-based recall, cross-session knowledge, single binary (git version)
+	pkgver = 0.2.2.r0.ge4040e7
+	pkgrel = 1
+	url = https://github.com/mnemon-dev/mnemon
+	arch = x86_64
+	arch = aarch64
+	license = Apache-2.0
+	makedepends = git
+	makedepends = go
+	provides = mnemon
+	conflicts = mnemon
+	conflicts = mnemon-bin
+	source = git+https://github.com/mnemon-dev/mnemon.git
+	sha256sums = SKIP
+
+pkgname = mnemon-git

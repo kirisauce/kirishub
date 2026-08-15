@@ -1,0 +1,17 @@
+pkgbase = mnemon-bin
+	pkgdesc = LLM-supervised persistent memory for AI agents - graph-based recall, cross-session knowledge, single binary (prebuilt)
+	pkgver = 0.2.2
+	pkgrel = 1
+	url = https://github.com/mnemon-dev/mnemon
+	arch = x86_64
+	arch = aarch64
+	license = Apache-2.0
+	provides = mnemon
+	conflicts = mnemon
+	conflicts = mnemon-git
+	source_x86_64 = https://github.com/mnemon-dev/mnemon/releases/download/v0.2.2/mnemon_0.2.2_linux_amd64.tar.gz
+	sha256sums_x86_64 = 24b904f1dae193bbf44518dcbd46f669a1a58c6f735a4a53bffc0e67e642b832
+	source_aarch64 = https://github.com/mnemon-dev/mnemon/releases/download/v0.2.2/mnemon_0.2.2_linux_arm64.tar.gz
+	sha256sums_aarch64 = d07367a257128ca51b5e1dc067354d977f5f260e01f45f6f4a87d5231fc8b3ad
+
+pkgname = mnemon-bin
