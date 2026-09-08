@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=OpenSquilla
+GenericName=AI Agent Runtime
+Comment=Token-Efficient AI Agent with same budget, higher intelligence density
+Exec=opensquilla %F
+Icon=ai.opensquilla.Desktop
+Terminal=false
+Categories=Development;Science;
+Keywords=ai;llm;agent;workflow;
+StartupWMClass=ai.opensquilla.Desktop

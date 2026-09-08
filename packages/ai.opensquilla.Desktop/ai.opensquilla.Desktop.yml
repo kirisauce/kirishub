@@ -1,0 +1,29 @@
+id: ai.opensquilla.Desktop
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+command: opensquilla
+finish-args:
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --share=network
+  - --share=ipc
+  - --persist=.opensquilla
+modules:
+  - name: opensquilla
+    buildsystem: simple
+    sources:
+      - type: dir
+        path: dest
+      - type: file
+        path: ai.opensquilla.Desktop.desktop
+      - type: file
+        path: ai.opensquilla.Desktop.metainfo.xml
+      - type: file
+        path: ai.opensquilla.Desktop.png
+    build-commands:
+      - cp -r bin -t ${FLATPAK_DEST}
+      - cp -r lib -t ${FLATPAK_DEST}
+      - install -Dm644 ai.opensquilla.Desktop.desktop ${FLATPAK_DEST}/share/applications/ai.opensquilla.Desktop.desktop
+      - install -Dm644 ai.opensquilla.Desktop.metainfo.xml ${FLATPAK_DEST}/share/metainfo/ai.opensquilla.Desktop.metainfo.xml
+      - install -Dm644 ai.opensquilla.Desktop.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/ai.opensquilla.Desktop.png

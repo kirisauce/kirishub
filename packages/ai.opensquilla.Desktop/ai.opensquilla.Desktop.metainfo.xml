@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>ai.opensquilla.Desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>Apache-2.0</project_license>
+  <name>OpenSquilla</name>
+  <summary>Token-Efficient AI Agent with same budget, higher intelligence density</summary>
+  <description>
+    <p>OpenSquilla is a multi-channel LLM gateway and agent runtime framework.</p>
+    <p>Features include:</p>
+    <ul>
+      <li>Multi-channel LLM integration</li>
+      <li>Agent runtime orchestration</li>
+      <li>Token-efficient budget management</li>
+      <li>Sandbox isolation and safety controls</li>
+    </ul>
+  </description>
+  <developer id="org.opensquilla">
+    <name>OpenSquilla Project</name>
+  </developer>
+  <url type="homepage">https://github.com/opensquilla/opensquilla</url>
+  <url type="bugtracker">https://github.com/opensquilla/opensquilla/issues</url>
+  <releases>
+    <release version="0.5.4" date="2026-08-25"/>
+  </releases>
+  <categories>
+    <category>Development</category>
+    <category>Science</category>
+  </categories>
+  <keywords>
+    <keyword>ai</keyword>
+    <keyword>agent</keyword>
+    <keyword>open-source</keyword>
+  </keywords>
+  <content_rating type="oars-1.1"/>
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </recommends>
+</component>
