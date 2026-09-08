@@ -179,7 +179,8 @@ Place at `packages/<app-id>/<app-id>.metainfo.xml`, following existing packages 
 ### 1.5. Add Icon
 
 Optional but strongly recommended. PNG format, recommended resolution 256×256 or 512×512.
-Place at `packages/<app-id>/<app-id>.png`.
+If the icon could be extracted from the sources, DO NOT LET IT INTO THE REPOSITORY.
+Else, place the pre-downloaded icon at `packages/<app-id>/<app-id>.png`.
 
 ---
 
@@ -187,9 +188,7 @@ Place at `packages/<app-id>/<app-id>.png`.
 
 1. Confirm the package ID to update.
 2. Update the YAML manifest:
-   - Update the source `url` to the new version
-   - Update the `sha256` checksum — **must download the actual file to compute, never guess**
-   - If `x-checker-data` is present, ensure the version/URL template still matches
+   - Always use `flatpak-external-data-checker` instead of manual downloading and checking.
 3. Update `metainfo.xml`:
    - Add a new `<release>` at the top of `<releases>` (version + ISO 8601 date)
    - Update license and URLs if necessary
