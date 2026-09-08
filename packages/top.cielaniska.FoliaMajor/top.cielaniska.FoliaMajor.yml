@@ -1,0 +1,69 @@
+id: top.cielaniska.FoliaMajor
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+command: folia-major
+finish-args:
+  # Display: Wayland preferred, X11 fallback
+  - --socket=wayland
+  - --socket=fallback-x11
+  # IPC is required by X11; keep audio and GPU working
+  - --share=ipc
+  - --socket=pulseaudio
+  - --device=dri
+  # Folia syncs with Navidrome, searches/plays online music, downloads lyric & cover metadata
+  - --share=network
+  # Local music library: read-only access to the user's Music dir (xdg-music)
+  - --filesystem=xdg-music:ro
+  # D-Bus: notifications + Secret Service (Folia persists KuGou/QQ logins via gnome-libsecret)
+  - --socket=session-bus
+  - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.freedesktop.secrets
+modules:
+  - name: folia-major
+    buildsystem: simple
+    build-commands:
+      # Install the portable app bundle into /app/lib/folia-major
+      - mkdir -p ${FLATPAK_DEST}/lib/folia-major
+      - cp -a folia-major-0.7.4-linux-x64/. ${FLATPAK_DEST}/lib/folia-major/
+      # Desktop entry, metainfo, and icon (extracted from the official bundle)
+      - install -Dm644 top.cielaniska.FoliaMajor.desktop ${FLATPAK_DEST}/share/applications/top.cielaniska.FoliaMajor.desktop
+      - install -Dm644 top.cielaniska.FoliaMajor.metainfo.xml ${FLATPAK_DEST}/share/metainfo/top.cielaniska.FoliaMajor.metainfo.xml
+      # The official icon is 16-bit RGBA; flatpak tooling expects 8-bit, so convert with ffmpeg
+      # (image2 muxer does not create parent dirs, mkdir first)
+      - mkdir -p ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps
+      - ffmpeg -y -loglevel error -i folia-major-0.7.4-linux-x64/resources/linux/icon.png -pix_fmt rgba ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/top.cielaniska.FoliaMajor.png
+      - ffmpeg -y -loglevel error -i folia-major-0.7.4-linux-x64/resources/linux/icon.png -vf scale=256:256 -pix_fmt rgba ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/top.cielaniska.FoliaMajor.png
+      - install -Dm644 ${FLATPAK_DEST}/lib/folia-major/LICENSE.electron.txt ${FLATPAK_DEST}/share/licenses/folia-major/LICENSE.electron.txt
+      # Wrapper: normalize env for flatpak sandbox, launch with system graphics (default)
+      - bash ./create-wrapper
+      - install -Dm755 folia-major-wrapper ${FLATPAK_DEST}/bin/folia-major
+      - rm ./create-wrapper
+    sources:
+      - type: archive
+        url: https://github.com/chthollyphile/folia-major/releases/download/v0.7.4/folia-major-0.7.4-linux-x64.tar.gz
+        sha256: 235458c91ac57eae0c2c028c7aa5588e7ad7385c17c6e5641bc0ed2b7f86380f
+        strip-components: 0
+        only-arches:
+          - x86_64
+        x-checker-data:
+          type: json
+          url: 'https://api.github.com/repos/chthollyphile/folia-major/releases/latest'
+          version-query: '.tag_name | sub("^v"; "")'
+          url-query: '.assets[] | select(.name == "folia-major-" + $version + "-linux-x64.tar.gz") | .browser_download_url'
+      - type: file
+        path: top.cielaniska.FoliaMajor.desktop
+      - type: file
+        path: top.cielaniska.FoliaMajor.metainfo.xml
+      - type: script
+        dest-filename: create-wrapper
+        commands:
+          - 'cat <<''EOF'' > folia-major-wrapper'
+          - '#!/bin/sh'
+          - '# Folia is shipped as a portable bundle; run it from its install dir so it finds resources/'
+          - 'APPDIR=/app/lib/folia-major'
+          - 'cd "$APPDIR" || exit 1'
+          - '# chrome-sandbox cannot be installed setuid inside a Flatpak sandbox, so run Electron'
+          - '# with --no-sandbox: the app is already confined by bubblewrap.'
+          - 'exec "$APPDIR/folia-major" --no-sandbox "$@"'
+          - 'EOF'

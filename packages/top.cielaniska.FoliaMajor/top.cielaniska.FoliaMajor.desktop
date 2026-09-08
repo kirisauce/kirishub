@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Folia
+GenericName=Music Player
+Comment=Lyrics-focused online and local music player
+Exec=folia-major %U
+Icon=top.cielaniska.FoliaMajor
+Terminal=false
+Categories=AudioVideo;Player;
+Keywords=music;lyrics;player;navidrome;netease;kugou;qq;local;
+StartupWMClass=Folia

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>top.cielaniska.FoliaMajor</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>AGPL-3.0-only</project_license>
+  <name>Folia</name>
+  <summary>Lyrics-focused online and local music player</summary>
+  <description>
+    <p>Folia is a fullscreen lyrics-first music player built on Electron. It supports online music playback, local music libraries, lyrics matching, LRC file recognition, Now Playing integration, and AI-generated visual themes.</p>
+    <p>Key features:</p>
+    <ul>
+      <li>Online search and playback: search songs, artists, or albums and auto-load covers and lyrics</li>
+      <li>Local music support: import local audio files; index data is stored locally and never uploaded</li>
+      <li>Smart lyric matching: auto-match online lyrics and covers for local songs, with manual correction</li>
+      <li>Local lyric file recognition: auto-load same-directory .lrc, .vtt, .ttml, .qrc, .yrc, .krc, or embedded LRC</li>
+      <li>Now Playing integration: consume timeline and lyric info from an external player via the local service</li>
+      <li>AI theme generation: immersive backgrounds and visual parameters based on song mood and lyric content</li>
+    </ul>
+  </description>
+  <developer id="io.github.chthollyphile">
+    <name>chthollyphile and contributors</name>
+  </developer>
+  <launchable type="desktop-id">top.cielaniska.FoliaMajor.desktop</launchable>
+  <url type="homepage">https://folia-site.cielaniska.top/</url>
+  <url type="bugtracker">https://github.com/chthollyphile/folia-major/issues</url>
+  <url type="donation">https://github.com/chthollyphile/folia-major</url>
+  <releases>
+    <release version="0.7.4" date="2026-09-06"/>
+  </releases>
+  <categories>
+    <category>AudioVideo</category>
+    <category>Player</category>
+  </categories>
+  <keywords>
+    <keyword>music</keyword>
+    <keyword>lyrics</keyword>
+    <keyword>player</keyword>
+    <keyword>navidrome</keyword>
+    <keyword>netease</keyword>
+    <keyword>kugou</keyword>
+    <keyword>qq</keyword>
+    <keyword>local</keyword>
+  </keywords>
+  <content_rating type="oars-1.1"/>
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </recommends>
+</component>
