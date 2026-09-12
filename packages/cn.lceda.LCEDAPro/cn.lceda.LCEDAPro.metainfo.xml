@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>cn.lceda.LCEDAPro</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary</project_license>
+  <name>LCEDA Pro</name>
+  <name xml:lang="zh-CN">嘉立创EDA(专业版)</name>
+  <summary>An Easier and Powerful Online PCB Design Tool</summary>
+  <summary xml:lang="zh-CN">一个用心为中国人定制的电路板开发平台</summary>
+  <description>
+    <p>LCEDA Pro (Chinese: 嘉立创EDA专业版) is a professional electronic design automation tool for schematic capture and PCB layout, developed by the LCEDA team. Launched at the end of 2019 as the successor of the EasyEDA standard edition, it rebuilds the PCB editor on a WebGL engine to handle large and complex board designs.</p>
+    <p>Key features:</p>
+    <ul>
+      <li>Schematic capture with hierarchical sheets, supporting projects of up to 500 schematic pages</li>
+      <li>WebGL-based PCB editor that stays responsive with tens of thousands of components or 100,000 pads</li>
+      <li>Device concept where a device bundles symbol, footprint, 3D model, and attributes for reuse</li>
+      <li>Multiple board designs within a single project</li>
+      <li>Panel and enclosure design</li>
+      <li>Built-in autorouting, without external plugins</li>
+      <li>Schematic simulation</li>
+      <li>Component selection backed by LCSC part data, without switching between the store and the editor</li>
+      <li>Offline client with local automatic backups, plus cloud storage for projects</li>
+      <li>Import of Protel, PADS, LTspice, and EasyEDA standard edition projects</li>
+      <li>Advanced DXF import and export, PDF export, and Gerber generation</li>
+    </ul>
+    <p>The software is free to use and only requires signing in with a free account.</p>
+    <p xml:lang="zh-CN">嘉立创EDA(专业版)是由嘉立创EDA团队打造的电子设计自动化工具，用于原理图绘制与 PCB 设计，于 2019 年末正式推出，是嘉立创EDA标准版（EasyEDA）的继任版本。其 PCB 编辑器基于 WebGL 引擎重构，可胜任大规模、复杂的板级设计。</p>
+    <p xml:lang="zh-CN">主要功能：</p>
+    <ul>
+      <li xml:lang="zh-CN">支持层次图的原理图绘制，单个工程最多支持 500 页原理图</li>
+      <li xml:lang="zh-CN">基于 WebGL 的 PCB 编辑器，设计规模达数万器件或十万焊盘仍可流畅缩放、平移与布线</li>
+      <li xml:lang="zh-CN">器件概念：器件 = 符号 + 封装 + 3D 模型 + 属性，支持高度复用</li>
+      <li xml:lang="zh-CN">一个工程支持多个单板设计</li>
+      <li xml:lang="zh-CN">支持面板与外壳设计</li>
+      <li xml:lang="zh-CN">内置自动布线，无需外接插件</li>
+      <li xml:lang="zh-CN">支持原理图仿真</li>
+      <li xml:lang="zh-CN">集成立创商城器件数据，器件选型无需在商城与编辑器之间来回切换</li>
+      <li xml:lang="zh-CN">离线客户端支持本地自动备份，工程同时保存在云端</li>
+      <li xml:lang="zh-CN">支持导入 Protel、PADS、LTspice 以及嘉立创EDA标准版工程</li>
+      <li xml:lang="zh-CN">增强的 DXF 导入导出、PDF 导出与 Gerber 生成</li>
+    </ul>
+    <p xml:lang="zh-CN">软件永久免费，注册登录后即可使用。</p>
+  </description>
+  <launchable type="desktop-id">cn.lceda.LCEDAPro.desktop</launchable>
+  <developer id="cn.lceda">
+    <name>LCEDA</name>
+    <name xml:lang="zh-CN">深圳嘉立创科技集团股份有限公司</name>
+  </developer>
+  <url type="homepage">https://lceda.cn/</url>
+  <url type="bugtracker">https://github.com/kirisauce/kirishub/issues</url>
+  <url type="help">https://prodocs.lceda.cn/cn/introduction/introduction/index.html</url>
+  <url type="faq">https://prodocs.lceda.cn/cn/faq/editor/index.html</url>
+  <url type="donation">https://lceda.cn/</url>
+  <project_group>LCEDA</project_group>
+  <releases>
+    <release version="3.2.116" date="2026-04-09"/>
+  </releases>
+  <categories>
+    <category>Development</category>
+    <category>Electronics</category>
+  </categories>
+  <keywords>
+    <keyword>pcb</keyword>
+    <keyword>eda</keyword>
+    <keyword>schematic</keyword>
+    <keyword>pcb design</keyword>
+    <keyword>circuit design</keyword>
+    <keyword>gerber</keyword>
+    <keyword>electronics</keyword>
+    <keyword>autorouting</keyword>
+    <keyword>simulation</keyword>
+    <keyword xml:lang="zh-CN">嘉立创EDA</keyword>
+    <keyword xml:lang="zh-CN">PCB设计</keyword>
+    <keyword xml:lang="zh-CN">原理图</keyword>
+    <keyword xml:lang="zh-CN">电路设计</keyword>
+    <keyword xml:lang="zh-CN">电子设计自动化</keyword>
+    <keyword xml:lang="zh-CN">立创商城</keyword>
+    <keyword xml:lang="zh-CN">嘉立创</keyword>
+  </keywords>
+  <content_rating type="oars-1.1">
+    <content_attribute id="social-info">intense</content_attribute>
+    <content_attribute id="social-contacts">intense</content_attribute>
+    <content_attribute id="money-advertising">intense</content_attribute>
+  </content_rating>
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </recommends>
+</component>

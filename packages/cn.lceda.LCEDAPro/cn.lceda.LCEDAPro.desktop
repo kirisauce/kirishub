@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=LCEDA Pro
+Name[zh_CN]=嘉立创EDA(专业版)
+GenericName=PCB Design Tool
+GenericName[zh_CN]=PCB设计工具
+Comment=An Easier and Powerful Online PCB Design Tool
+Comment[zh_CN]=一个用心为中国人定制的电路板开发平台
+Icon=cn.lceda.LCEDAPro
+Exec=lceda-pro.sh
+StartupWMClass=cn.lceda.LCEDAPro
+Categories=Development;Electronics
