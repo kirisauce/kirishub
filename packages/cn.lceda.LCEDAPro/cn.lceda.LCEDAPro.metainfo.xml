@@ -53,6 +53,7 @@
   <url type="donation">https://lceda.cn/</url>
   <project_group>LCEDA</project_group>
   <releases>
+    <release version="3.2.186" date="2026-08-21"/>
     <release version="3.2.116" date="2026-04-09"/>
   </releases>
   <categories>

@@ -18,16 +18,16 @@ modules:
   - name: lceda-pro
     buildsystem: simple
     build-commands:
-      - install -D -m 755 -t /app/bin/ lceda-pro.sh
-      - install -D -m 755 -t /app/bin/ apply_extra
-      - install -D -m 644 -t /app/share/icons/hicolor/512x512/apps/ cn.lceda.LCEDAPro.png
-      - install -D -m 644 -t /app/share/applications/ cn.lceda.LCEDAPro.desktop
-      - install -D -m 644 -t /app/share/metainfo/ cn.lceda.LCEDAPro.metainfo.xml
+      - install -Dm755 -t ${FLATPAK_DEST}/bin/ lceda-pro.sh
+      - install -Dm755 -t ${FLATPAK_DEST}/bin/ apply_extra
+      - install -Dm644 -t ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/ cn.lceda.LCEDAPro.png
+      - install -Dm644 -t ${FLATPAK_DEST}/share/applications/ cn.lceda.LCEDAPro.desktop
+      - install -Dm644 -t ${FLATPAK_DEST}/share/metainfo/ cn.lceda.LCEDAPro.metainfo.xml
     sources:
       - type: script
         commands:
           - export TMPDIR="$XDG_RUNTIME_DIR/app/$FLATPAK_ID"
-          - exec zypak-wrapper /app/extra/lceda-pro/lceda-pro "$@"
+          - exec zypak-wrapper ${FLATPAK_DEST}/extra/lceda-pro/lceda-pro "$@"
         dest-filename: lceda-pro.sh
 
       - type: script
@@ -49,9 +49,9 @@ modules:
       - type: extra-data
         filename: lceda-pro.zip
         only-arches: [x86_64]
-        url: https://image.lceda.cn/files/lceda-pro-linux-x64-3.2.116.zip
-        sha256: 922548e5ef647e4fc30eeec18d737da6f46e4d5c64c0b0d999e358e897adf692
-        size: 357082705
+        url: https://image.lceda.cn/files/lceda-pro-linux-x64-3.2.186.zip
+        sha256: 4314e046e34d5eb02ca1ea44c5faf5cfc74d35e9a83a5e978287f27ed0bbb80a
+        size: 358966558
         x-checker-data:
           type: html
           url: https://lceda.cn/page/download
