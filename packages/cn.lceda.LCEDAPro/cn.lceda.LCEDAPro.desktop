@@ -7,6 +7,6 @@ GenericName[zh_CN]=PCB设计工具
 Comment=An Easier and Powerful Online PCB Design Tool
 Comment[zh_CN]=一个用心为中国人定制的电路板开发平台
 Icon=cn.lceda.LCEDAPro
-Exec=lceda-pro.sh
+Exec=lceda-pro
 StartupWMClass=cn.lceda.LCEDAPro
 Categories=Development;Electronics

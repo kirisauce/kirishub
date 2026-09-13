@@ -4,13 +4,14 @@ runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 base: org.electronjs.Electron2.BaseApp
 base-version: '25.08'
-command: lceda-pro.sh
+command: lceda-pro
 separate-locales: false
 
 finish-args:
   - --share=ipc
   - --share=network
-  - --socket=x11
+  - --socket=fallback-x11
+  - --socket=wayland
   - --device=dri
   - --filesystem=xdg-documents
 
@@ -18,24 +19,24 @@ modules:
   - name: lceda-pro
     buildsystem: simple
     build-commands:
-      - install -Dm755 -t ${FLATPAK_DEST}/bin/ lceda-pro.sh
-      - install -Dm755 -t ${FLATPAK_DEST}/bin/ apply_extra
+      - install -Dm755 lceda-pro-entry ${FLATPAK_DEST}/bin/lceda-pro
       - install -Dm644 -t ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/ cn.lceda.LCEDAPro.png
       - install -Dm644 -t ${FLATPAK_DEST}/share/applications/ cn.lceda.LCEDAPro.desktop
       - install -Dm644 -t ${FLATPAK_DEST}/share/metainfo/ cn.lceda.LCEDAPro.metainfo.xml
+      - mkdir -p ${FLATPAK_DEST}/lib
+      - mv lceda-pro -t ${FLATPAK_DEST}/lib
     sources:
       - type: script
         commands:
           - export TMPDIR="$XDG_RUNTIME_DIR/app/$FLATPAK_ID"
-          - exec zypak-wrapper ${FLATPAK_DEST}/extra/lceda-pro/lceda-pro "$@"
-        dest-filename: lceda-pro.sh
-
-      - type: script
-        commands:
-          - unzip -q lceda-pro.zip
-          - chmod +x lceda-pro/lceda-pro
-          - rm lceda-pro.zip *.sh *.txt
-        dest-filename: apply_extra
+          - if test -z $ZYPAK_DISABLE_SANDBOX; then
+          -   export ZYPAK_DISABLE_SANDBOX=1
+          - fi
+          - if test -n $WAYLAND_DISPLAY -a -z "$(echo "$@" | grep -- --ozone-platform)"; then
+          -   flags="--ozone-platform=wayland $flags"
+          - fi
+          - exec zypak-wrapper /app/lib/lceda-pro/lceda-pro $flags "$@"
+        dest-filename: lceda-pro-entry
 
       - type: file
         path: cn.lceda.LCEDAPro.metainfo.xml
@@ -46,12 +47,11 @@ modules:
       - type: file
         path: cn.lceda.LCEDAPro.desktop
 
-      - type: extra-data
-        filename: lceda-pro.zip
+      - type: archive
+        strip-components: 0
         only-arches: [x86_64]
         url: https://image.lceda.cn/files/lceda-pro-linux-x64-3.2.186.zip
         sha256: 4314e046e34d5eb02ca1ea44c5faf5cfc74d35e9a83a5e978287f27ed0bbb80a
-        size: 358966558
         x-checker-data:
           type: html
           url: https://lceda.cn/page/download
