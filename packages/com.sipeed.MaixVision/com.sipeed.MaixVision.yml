@@ -2,6 +2,8 @@ id: com.sipeed.MaixVision
 runtime: org.freedesktop.Platform
 runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
+base: org.electronjs.Electron2.BaseApp
+base-version: '25.08'
 command: maixvision
 finish-args:
   - --socket=wayland
@@ -45,11 +47,11 @@ modules:
         commands:
           - 'cat > maixvision <<EOF'
           - '  export APPDIR=${FLATPAK_DEST}/lib/maixvision'
-          - '  if [[ ! -z \$WAYLAND_DISPLAY ]]'
+          - '  if test \$WAYLAND_DISPLAY'
           - '  then'
           - '    flags="--ozone-platform=wayland \$flags"'
           - '  fi'
-          - '  exec ${FLATPAK_DEST}/lib/maixvision/AppRun --no-sandbox \$flags \$@'
+          - '  exec zypak-wrapper ${FLATPAK_DEST}/lib/maixvision/AppRun \$flags \$@'
           - 'EOF'
   - name: maixpy
     buildsystem: simple
