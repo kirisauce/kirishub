@@ -41,6 +41,17 @@ modules:
           url-query: .version as $v | .files[] | select(.url | test("x86_64\\.AppImage$"))
             | "https://cdn.sipeed.com/maixvision/\($v)/\(.url)"
       - type: file
+        url: https://cdn.sipeed.com/maixvision/1.2.3/MaixVision-1.2.3-arm64.AppImage
+        sha256: 3fdea57fd5ca54b6ee713e88cc6817465c0e5b0191b4ef27ffc056d37ebb1531
+        dest-filename: MaixVision.AppImage
+        only-arches: [aarch64]
+        x-checker-data:
+          type: json
+          url: https://cdn.sipeed.com/maixvision/latest-linux.json
+          version-query: .version
+          url-query: .version as $v | .files[] | select(.url | test("arm64\\.AppImage$"))
+            | "https://cdn.sipeed.com/maixvision/\($v)/\(.url)"
+      - type: file
         path: com.sipeed.MaixVision.desktop
       - type: file
         path: com.sipeed.MaixVision.metainfo.xml
