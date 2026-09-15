@@ -30,14 +30,16 @@ modules:
       - install -Dm755 maixvision ${FLATPAK_DEST}/bin/maixvision
     sources:
       - type: file
-        url: https://cdn.sipeed.com/maixvision/1.2.2/MaixVision-1.2.2.AppImage
-        sha256: 28efe3099aea9cf6ab0341296bf970121723c96db7bcc932f0e803643e8a777e
+        url: https://cdn.sipeed.com/maixvision/1.2.3/MaixVision-1.2.3-x86_64.AppImage
+        sha256: 3b64c3b903e925f3d625c04b43b2c2f0886a1d1692e811ef7cb76dc597f8de0c
         dest-filename: MaixVision.AppImage
+        only-arches: [x86_64]
         x-checker-data:
           type: json
-          url: 'https://cdn.sipeed.com/maixvision/latest-linux.json'
-          version-query: '.version'
-          url-query: '.version as $v | .files[] | select(.url | test("\\.AppImage$")) | "https://cdn.sipeed.com/maixvision/\($v)/\(.url)"'
+          url: https://cdn.sipeed.com/maixvision/latest-linux.json
+          version-query: .version
+          url-query: .version as $v | .files[] | select(.url | test("x86_64\\.AppImage$"))
+            | "https://cdn.sipeed.com/maixvision/\($v)/\(.url)"
       - type: file
         path: com.sipeed.MaixVision.desktop
       - type: file
@@ -45,14 +47,14 @@ modules:
       - type: script
         dest-filename: create-maixvision-wrapper
         commands:
-          - 'cat > maixvision <<EOF'
+          - cat > maixvision <<EOF
           - '  export APPDIR=${FLATPAK_DEST}/lib/maixvision'
           - '  if test \$WAYLAND_DISPLAY'
           - '  then'
           - '    flags="--ozone-platform=wayland \$flags"'
           - '  fi'
           - '  exec zypak-wrapper ${FLATPAK_DEST}/lib/maixvision/AppRun \$flags \$@'
-          - 'EOF'
+          - EOF
   - name: maixpy
     buildsystem: simple
     build-commands:
@@ -65,5 +67,7 @@ modules:
           type: json
           url: https://pypi.org/pypi/maixpy/json
           version-query: .info.version
-          url-query: .urls[] | select(.python_version == "cp313" and .packagetype == "bdist_wheel") | .url
-          timestamp-query: .urls[] | select(.python_version == "cp313" and .packagetype == "bdist_wheel") | .upload_time_iso_8601
+          url-query: .urls[] | select(.python_version == "cp313" and .packagetype
+            == "bdist_wheel") | .url
+          timestamp-query: .urls[] | select(.python_version == "cp313" and .packagetype
+            == "bdist_wheel") | .upload_time_iso_8601
