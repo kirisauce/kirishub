@@ -1,0 +1,38 @@
+id: com.microsoft.devtunnels.Cli
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+command: devtunnel
+finish-args:
+  # Dev Tunnels dials out to Azure and relays ports from the host's loopback,
+  # so the sandbox has to share the host network namespace.
+  - --share=network
+  # The CLI caches its MSAL credentials through libsecret (gnome-keyring / KWallet).
+  - --talk-name=org.freedesktop.secrets
+modules:
+  - name: devtunnels-cli
+    buildsystem: simple
+    build-commands:
+      # Upstream ships one self-contained .NET binary: install it under an explicit
+      # name, and install devtunnel-wrapper as the `devtunnel` command.
+      - install -Dm755 devtunnel-cli ${FLATPAK_DEST}/bin/devtunnel-cli
+      - install -Dm755 devtunnel-wrapper ${FLATPAK_DEST}/bin/devtunnel
+      - install -Dm644 com.microsoft.devtunnels.Cli.metainfo.xml ${FLATPAK_DEST}/share/metainfo/com.microsoft.devtunnels.Cli.metainfo.xml
+    sources:
+      - type: file
+        url: https://aka.ms/TunnelsCliDownload/linux-x64
+        dest-filename: devtunnel-cli
+        sha256: cfb813988cfa0032535622e3fe22cad33a890766db40b8aa85190e05fdb4e7e3
+        only-arches:
+          - x86_64
+        x-checker-data:
+          # The aka.ms download URL carries no version, so upstream's CLI version
+          # manifest is used to detect new releases and re-checksum the binary.
+          type: json
+          url: 'https://tunnelsassetsprod.blob.core.windows.net/cli/cli-version.json'
+          version-query: '.version | split("+")[0]'
+          url-query: '"https://aka.ms/TunnelsCliDownload/linux-x64"'
+      - type: file
+        path: devtunnel-wrapper
+      - type: file
+        path: com.microsoft.devtunnels.Cli.metainfo.xml

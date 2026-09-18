@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="console-application">
+  <id>com.microsoft.devtunnels.Cli</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary</project_license>
+  <name>Dev Tunnels CLI</name>
+  <summary>Command-line client for Microsoft Dev Tunnels</summary>
+  <description>
+    <p>Dev Tunnels CLI is the command-line client for Microsoft Dev Tunnels. It hosts a local port behind a public HTTPS URL or connects to an existing tunnel and forwards its ports back to the local machine, without opening any inbound firewall port on the local network.</p>
+    <p>Features:</p>
+    <ul>
+      <li>Host a local port and reach it over a persistent HTTPS tunnel URL</li>
+      <li>Connect to a tunnel and forward its ports to the local machine</li>
+      <li>Create, inspect, update, and delete tunnels from the command line</li>
+      <li>Manage tunnel ports and access control entries</li>
+      <li>Sign in with Microsoft Entra ID, Microsoft, or GitHub accounts</li>
+      <li>Inspect account limits and available service clusters</li>
+      <li>Diagnose connectivity with the built-in echo and ping commands</li>
+    </ul>
+  </description>
+  <provides>
+    <binary>devtunnel</binary>
+  </provides>
+  <developer id="com.microsoft">
+    <name>Microsoft Corporation</name>
+  </developer>
+  <url type="homepage">https://learn.microsoft.com/azure/developer/dev-tunnels/</url>
+  <url type="bugtracker">https://github.com/microsoft/dev-tunnels/issues</url>
+  <releases>
+    <release version="1.0.2086" date="2026-09-17"/>
+  </releases>
+  <categories>
+    <category>Development</category>
+    <category>Network</category>
+  </categories>
+  <keywords>
+    <keyword>tunnel</keyword>
+    <keyword>dev tunnels</keyword>
+    <keyword>port forwarding</keyword>
+    <keyword>remote access</keyword>
+    <keyword>localhost</keyword>
+  </keywords>
+  <content_rating type="oars-1.1"/>
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </recommends>
+</component>

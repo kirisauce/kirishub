@@ -1,0 +1,25 @@
+#!/bin/sh
+# Launcher for the Dev Tunnels CLI inside the Flatpak sandbox.
+#
+# Both settings below are required for the CLI to start in the sandbox: without
+# them it either fails to unpack its payload or fails to create its credential
+# directory.
+
+# .NET single-file apps unpack their payload into a writable cache directory before
+# the app starts. $HOME/.cache is read-only in the sandbox, so send the extraction
+# to the app-private cache directory instead.
+DOTNET_BUNDLE_EXTRACT_BASE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/devtunnel-bundle"
+export DOTNET_BUNDLE_EXTRACT_BASE_DIR
+mkdir -p "$DOTNET_BUNDLE_EXTRACT_BASE_DIR"
+
+# The CLI keeps devtunnels.json and its token cache in $XDG_DATA_HOME/DevTunnels.
+# When that directory is missing it silently falls back to ./DevTunnels, which is
+# not writable in the sandbox. Make sure XDG_DATA_HOME exists and start the CLI
+# from there, so credentials live in the app-private data directory and persist
+# across runs.
+XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_DATA_HOME
+mkdir -p "$XDG_DATA_HOME"
+cd "$XDG_DATA_HOME" || exit 1
+
+exec /app/bin/devtunnel-cli "$@"
