@@ -1,0 +1,57 @@
+id: com.st.STM32CubeMX
+runtime: org.freedesktop.Platform
+runtime-version: '26.08'
+sdk: org.freedesktop.Sdk
+# JDK 22+ dropped sun.misc.Unsafe.ensureClassInitialized, used by STM32Cube middleware pages
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.openjdk21
+command: stm32cubemx
+finish-args:
+  - --socket=x11
+  - --share=ipc
+  - --share=network
+  - --filesystem=xdg-documents
+  - --persist=.java
+  - --persist=.stmcube
+  - --persist=.stm32cubemx
+  - --persist=.stmcufinder
+  - --persist=STM32Cube
+  - --env=PATH=/app/jre/bin:/app/bin:/usr/bin
+  - --env=JAVA_HOME=/app/jre
+modules:
+  - name: openjdk
+    buildsystem: simple
+    build-commands:
+      - /usr/lib/sdk/openjdk21/install.sh
+
+  - name: stm32cubemx
+    buildsystem: simple
+    build-options:
+      no-debuginfo: true
+      no-debuginfo-compression: true
+    build-commands:
+      - unzip -q stm32cube_mx.zip
+      - mkdir -p ${FLATPAK_DEST}/lib
+      - mv MX ${FLATPAK_DEST}/lib/stm32cubemx
+      - install -Dm755 stm32cubemx ${FLATPAK_DEST}/bin/stm32cubemx
+      - install -Dm644 ${FLATPAK_DEST}/lib/stm32cubemx/help/STM32CubeMX.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/com.st.STM32CubeMX.png
+      - install -Dm644 com.st.STM32CubeMX.desktop ${FLATPAK_DEST}/share/applications/com.st.STM32CubeMX.desktop
+      - install -Dm644 com.st.STM32CubeMX.metainfo.xml ${FLATPAK_DEST}/share/metainfo/com.st.STM32CubeMX.metainfo.xml
+    sources:
+      - type: file
+        url: https://sw-center.st.com/packs/resource/library/stm32cube_mx_v6181-lin.zip
+        sha256: 08c4cef5487cd7d36c1f1e6e0267396a4e2e17f6aace401229ed7ed0baf7841f
+        dest-filename: stm32cube_mx.zip
+        only-arches:
+          - x86_64
+      - type: file
+        path: com.st.STM32CubeMX.desktop
+      - type: file
+        path: com.st.STM32CubeMX.metainfo.xml
+      - type: script
+        dest-filename: stm32cubemx
+        commands:
+          - 'cubemx_home="$HOME/.var/app/${FLATPAK_ID:-com.st.STM32CubeMX}"'
+          - 'mkdir -p "$cubemx_home"'
+          - 'export HOME="$cubemx_home"'
+          - 'exec java -Duser.home="$cubemx_home" -jar /app/lib/stm32cubemx/STM32CubeMX "$@"'

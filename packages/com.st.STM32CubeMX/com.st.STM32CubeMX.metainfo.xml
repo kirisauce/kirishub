@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.st.STM32CubeMX</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary</project_license>
+  <name>STM32CubeMX</name>
+  <summary>STM32Cube initialization code generator</summary>
+  <summary xml:lang="zh-CN">STM32Cube 初始化代码生成器</summary>
+  <description>
+    <p>STM32CubeMX is a graphical tool that configures STM32 microcontrollers and microprocessors step by step and generates the corresponding initialization C code for the Arm Cortex-M core, or a partial Linux device tree for the Arm Cortex-A core.</p>
+    <p>Key features:</p>
+    <ul>
+      <li>Pinout, clock tree, and peripheral configuration through graphical wizards</li>
+      <li>Initialization C code generation for the STM32Cube HAL and LL libraries</li>
+      <li>Device tree generation for STM32MPx Linux and Android projects</li>
+      <li>Middleware and expansion pack integration, including FreeRTOS, USB, lwIP, and FatFs</li>
+      <li>Project generation for IAR EWARM, Keil MDK-ARM, Makefile, and STM32CubeIDE</li>
+      <li>Power consumption calculation and estimation</li>
+      <li>Import of existing projects and pinout files</li>
+      <li>Access to the whole STM32 microcontroller and microprocessor database</li>
+    </ul>
+    <p xml:lang="zh-CN">STM32CubeMX 是一款图形化工具，以向导方式配置 STM32 微控制器与微处理器，并生成对应的初始化 C 代码（Arm Cortex-M 内核），或为 Arm Cortex-A 内核生成部分 Linux 设备树。</p>
+    <p xml:lang="zh-CN">主要功能：</p>
+    <ul>
+      <li xml:lang="zh-CN">通过图形向导配置引脚、时钟树与外设</li>
+      <li xml:lang="zh-CN">为 STM32Cube HAL 与 LL 库生成初始化 C 代码</li>
+      <li xml:lang="zh-CN">为 STM32MPx 的 Linux 与 Android 工程生成设备树</li>
+      <li xml:lang="zh-CN">集成中间件与扩展包，包括 FreeRTOS、USB、lwIP、FatFs</li>
+      <li xml:lang="zh-CN">可生成 IAR EWARM、Keil MDK-ARM、Makefile、STM32CubeIDE 工程</li>
+      <li xml:lang="zh-CN">功耗计算与估算</li>
+      <li xml:lang="zh-CN">可导入已有工程与引脚配置文件</li>
+      <li xml:lang="zh-CN">覆盖完整的 STM32 微控制器与微处理器数据库</li>
+    </ul>
+  </description>
+  <developer id="com.st">
+    <name>STMicroelectronics</name>
+  </developer>
+  <url type="homepage">https://www.st.com/en/development-tools/stm32cubemx.html</url>
+  <url type="bugtracker">https://community.st.com/</url>
+  <url type="donation">https://www.st.com/en/development-tools/stm32cubemx.html</url>
+  <project_group>STMicroelectronics</project_group>
+  <launchable type="desktop-id">com.st.STM32CubeMX.desktop</launchable>
+  <releases>
+    <release version="6.18.1" date="2026-07-31"/>
+  </releases>
+  <categories>
+    <category>Development</category>
+    <category>IDE</category>
+  </categories>
+  <keywords>
+    <keyword>stm32</keyword>
+    <keyword>stm32cube</keyword>
+    <keyword>cubemx</keyword>
+    <keyword>microcontroller</keyword>
+    <keyword>code generation</keyword>
+    <keyword>configuration</keyword>
+    <keyword>embedded</keyword>
+    <keyword>pinout</keyword>
+    <keyword>clock tree</keyword>
+    <keyword xml:lang="zh-CN">微控制器</keyword>
+    <keyword xml:lang="zh-CN">代码生成</keyword>
+    <keyword xml:lang="zh-CN">配置</keyword>
+    <keyword xml:lang="zh-CN">嵌入式</keyword>
+    <keyword xml:lang="zh-CN">引脚配置</keyword>
+    <keyword xml:lang="zh-CN">时钟树</keyword>
+  </keywords>
+  <content_rating type="oars-1.1"/>
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </recommends>
+</component>
