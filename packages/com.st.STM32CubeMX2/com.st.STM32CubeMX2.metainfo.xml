@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.st.STM32CubeMX2</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary</project_license>
+  <name>STM32CubeMX2</name>
+  <summary>STM32Cube initialization code generator</summary>
+  <summary xml:lang="zh-CN">STM32Cube 初始化代码生成器</summary>
+  <description>
+    <p>STM32CubeMX2 is the next generation of the STM32CubeMX configuration and code generation tool, provided as a standalone application for the STM32C5 series.</p>
+    <p>Key features:</p>
+    <ul>
+      <li>Graphical configuration of pinout, clock tree, and peripherals with validation of the resulting settings</li>
+      <li>Activation and configuration of middleware and utilities through the built-in pack manager</li>
+      <li>Code and project generation driven by CMake, with export to the supported IDEs</li>
+      <li>Command line interface for scripted configuration and code generation</li>
+      <li>Import of existing projects and linked IOC2 configuration files</li>
+    </ul>
+    <p xml:lang="zh-CN">STM32CubeMX2 是 STM32CubeMX 配置与代码生成工具的新一代版本，以独立应用形式提供，面向 STM32C5 系列。</p>
+    <p xml:lang="zh-CN">主要功能：</p>
+    <ul>
+      <li xml:lang="zh-CN">以图形方式配置引脚、时钟树与外设，并对配置结果做校验</li>
+      <li xml:lang="zh-CN">通过内置的 pack manager 启用并配置中间件与实用组件</li>
+      <li xml:lang="zh-CN">基于 CMake 生成代码与工程，并导出到受支持的 IDE</li>
+      <li xml:lang="zh-CN">提供命令行接口，可用脚本方式配置并生成代码</li>
+      <li xml:lang="zh-CN">支持导入已有工程与关联的 IOC2 配置文件</li>
+    </ul>
+  </description>
+  <developer id="com.st">
+    <name>STMicroelectronics</name>
+  </developer>
+  <url type="homepage">https://www.st.com/en/development-tools/stm32cubemx.html</url>
+  <url type="bugtracker">https://community.st.com/t5/stm32cubemx2-mcus/bd-p/stm32cubemx2-mcus</url>
+  <url type="donation">https://www.st.com/en/development-tools/stm32cubemx.html</url>
+  <project_group>STMicroelectronics</project_group>
+  <launchable type="desktop-id">com.st.STM32CubeMX2.desktop</launchable>
+  <releases>
+    <release version="1.1.1" date="2026-07-27"/>
+  </releases>
+  <categories>
+    <category>Development</category>
+    <category>IDE</category>
+  </categories>
+  <keywords>
+    <keyword>stm32</keyword>
+    <keyword>stm32cube</keyword>
+    <keyword>stm32cubemx2</keyword>
+    <keyword>cubemx2</keyword>
+    <keyword>stm32c5</keyword>
+    <keyword>microcontroller</keyword>
+    <keyword>code generation</keyword>
+    <keyword>configuration</keyword>
+    <keyword>embedded</keyword>
+    <keyword>pinout</keyword>
+    <keyword>clock tree</keyword>
+    <keyword xml:lang="zh-CN">微控制器</keyword>
+    <keyword xml:lang="zh-CN">代码生成</keyword>
+    <keyword xml:lang="zh-CN">配置</keyword>
+    <keyword xml:lang="zh-CN">嵌入式</keyword>
+    <keyword xml:lang="zh-CN">引脚配置</keyword>
+    <keyword xml:lang="zh-CN">时钟树</keyword>
+  </keywords>
+  <content_rating type="oars-1.1"/>
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </recommends>
+</component>

@@ -1,0 +1,59 @@
+id: com.st.STM32CubeMX2
+runtime: org.freedesktop.Platform
+runtime-version: '26.08'
+sdk: org.freedesktop.Sdk
+base: org.electronjs.Electron2.BaseApp
+base-version: '26.08'
+command: stm32cubemx2
+separate-locales: false
+
+finish-args:
+  - --share=ipc
+  - --share=network
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --device=dri
+  - --filesystem=xdg-documents
+
+modules:
+  - name: stm32cubemx2
+    buildsystem: simple
+    build-options:
+      no-debuginfo: true
+      no-debuginfo-compression: true
+      strip: false
+    build-commands:
+      # flatpak-builder does not verify `path` sources, so the digest of the hand-placed installer
+      # is checked here before anything is unpacked.
+      - echo "8fc23d1960ca6bac0922ecd3bfab34d7881f2be6fb382d80430503d7a01a0f3d  stm32cubemx2-1.1.1-X64-Linux-installer" | sha256sum --check -
+      # The installer carries its payload as an embedded gzip-compressed tar archive, with further
+      # installer data behind it, so extract-payload.py unpacks it instead of `tar -xzf`.
+      - python3 extract-payload.py stm32cubemx2-1.1.1-X64-Linux-installer payload
+      - mkdir -p ${FLATPAK_DEST}/lib/stm32cubemx2
+      - cp -a payload/. ${FLATPAK_DEST}/lib/stm32cubemx2/
+      - install -Dm755 stm32cubemx2-entry ${FLATPAK_DEST}/bin/stm32cubemx2
+      - install -Dm644 payload/STM32CubeMX2.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/com.st.STM32CubeMX2.png
+      - install -Dm644 payload/LICENSES.txt ${FLATPAK_DEST}/share/licenses/com.st.STM32CubeMX2/LICENSES.txt
+      - install -Dm644 com.st.STM32CubeMX2.desktop ${FLATPAK_DEST}/share/applications/com.st.STM32CubeMX2.desktop
+      - install -Dm644 com.st.STM32CubeMX2.metainfo.xml ${FLATPAK_DEST}/share/metainfo/com.st.STM32CubeMX2.metainfo.xml
+    sources:
+      # STM32CubeMX2 1.1.1 for Linux, from the "Get Software" table of
+      # https://www.st.com/en/development-tools/stm32cubemx.html (STM32CubeMX2 -> Generic Linux).
+      # ST hands that installer out to authenticated MyST sessions only, so it is not fetched from a
+      # URL: download it from that page and place it next to this manifest. The file is gitignored
+      # and its digest is verified by the first build command.
+      - type: file
+        path: stm32cubemx2-1.1.1-X64-Linux-installer
+        only-arches:
+          - x86_64
+      - type: file
+        path: extract-payload.py
+      - type: file
+        path: com.st.STM32CubeMX2.desktop
+      - type: file
+        path: com.st.STM32CubeMX2.metainfo.xml
+      - type: script
+        dest-filename: stm32cubemx2-entry
+        commands:
+          - export TMPDIR="$XDG_RUNTIME_DIR/app/$FLATPAK_ID"
+          - exec zypak-wrapper /app/lib/stm32cubemx2/stm32cubemx2 "$@"

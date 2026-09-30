@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Name=STM32CubeMX2
+GenericName=STM32 configuration and code generation tool
+GenericName[zh_CN]=STM32 配置与代码生成工具
+Comment=STM32Cube initialization code generator
+Comment[zh_CN]=STM32Cube 初始化代码生成器
+Exec=stm32cubemx2 %F
+Icon=com.st.STM32CubeMX2
+Terminal=false
+Categories=Development;IDE;
+Keywords=stm32;stm32cube;stm32cubemx2;cubemx2;stm32c5;microcontroller;configuration;code generation;embedded;
+Keywords[zh_CN]=stm32;stm32cube;cubemx2;微控制器;配置;代码生成;嵌入式;
+StartupNotify=false
+StartupWMClass=com.st.STM32CubeMX2
