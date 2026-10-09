@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Name=STM32CubeProgrammer
+GenericName=STM32 programming and configuration tool
+GenericName[zh_CN]=STM32 编程与配置工具
+Comment=Program and configure STM32 devices over debug or bootloader interfaces
+Comment[zh_CN]=通过调试或 bootloader 接口烧录并配置 STM32 器件
+Exec=stm32cubeprogrammer %F
+Icon=com.st.STM32CubeProgrammer
+Terminal=false
+Categories=Development;Electronics;
+Keywords=stm32;stm32cubeprogrammer;cubeprog;programmer;flashing;debug;microcontroller;embedded;
+Keywords[zh_CN]=stm32;烧录;下载;编程;调试;微控制器;嵌入式;
+StartupNotify=false
+StartupWMClass=com.st.STM32CubeProgrammer

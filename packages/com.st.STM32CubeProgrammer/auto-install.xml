@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IzPack automation file driving the STM32CubeProgrammer installer unattended.
+     @INSTALL_PATH@ is substituted with the target directory by the build. -->
+<AutomatedInstallation langpack="eng">
+  <com.st.CustomPanels.CheckedHelloPorgrammerPanel id="Hello.panel"/>
+  <com.izforge.izpack.panels.info.InfoPanel id="Info.panel"/>
+  <com.izforge.izpack.panels.licence.LicencePanel id="Licence.panel"/>
+  <com.st.CustomPanels.TargetProgrammerPanel id="target.panel">
+    <installpath>@INSTALL_PATH@</installpath>
+  </com.st.CustomPanels.TargetProgrammerPanel>
+  <com.st.CustomPanels.AnalyticsPanel id="analytics.panel"/>
+  <com.st.CustomPanels.PacksProgrammerPanel id="Packs.panel"/>
+  <com.izforge.izpack.panels.install.InstallPanel id="Install.panel"/>
+  <com.izforge.izpack.panels.shortcut.ShortcutPanel id="Shortcut.panel"/>
+  <com.st.CustomPanels.FinishProgrammerPanel id="finish.panel"/>
+</AutomatedInstallation>

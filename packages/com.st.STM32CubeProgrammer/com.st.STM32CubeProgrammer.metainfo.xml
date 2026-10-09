@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.st.STM32CubeProgrammer</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary</project_license>
+  <name>STM32CubeProgrammer</name>
+  <summary>STM32 programming and configuration tool</summary>
+  <summary xml:lang="zh-CN">STM32 编程与配置工具</summary>
+  <description>
+    <p>STM32CubeProgrammer is the all-in-one tool for programming and configuring STM32 microcontrollers and microprocessors, through the ST-LINK debug probe (JTAG and SWD) as well as the bootloader interfaces (UART, USB DFU, I2C, SPI, and CAN).</p>
+    <p>Key features:</p>
+    <ul>
+      <li>Reading, writing, and verifying device memory, with support for hex, binary, ELF, and S-record files</li>
+      <li>Option byte, OTP, and core register programming</li>
+      <li>Programming of external flash memories through flash loaders</li>
+      <li>Secure firmware install (SFI/SFIx), firmware signing, and key provisioning through STM32 Trusted Package Creator</li>
+      <li>Serial Wire Viewer, register viewer, and hard fault analyzer</li>
+      <li>Script manager and command line interfaces for automated programming</li>
+    </ul>
+    <p xml:lang="zh-CN">STM32CubeProgrammer 是烧录与配置 STM32 微控制器与微处理器的一体化工具，可通过 ST-LINK 调试探头（JTAG 与 SWD）以及 bootloader 接口（UART、USB DFU、I2C、SPI、CAN）连接器件。</p>
+    <p xml:lang="zh-CN">主要功能：</p>
+    <ul>
+      <li xml:lang="zh-CN">读写与校验器件内存，支持 hex、binary、ELF 与 S-record 文件</li>
+      <li xml:lang="zh-CN">Option bytes、OTP 与内核寄存器编程</li>
+      <li xml:lang="zh-CN">通过 flash loader 烧录外部闪存</li>
+      <li xml:lang="zh-CN">借助 STM32 Trusted Package Creator 完成安全固件安装（SFI/SFIx）、固件签名与密钥配置</li>
+      <li xml:lang="zh-CN">Serial Wire Viewer、寄存器查看器与 Hard Fault 分析器</li>
+      <li xml:lang="zh-CN">提供脚本管理器与命令行接口，便于自动化烧录</li>
+    </ul>
+  </description>
+  <developer id="com.st">
+    <name>STMicroelectronics</name>
+  </developer>
+  <url type="homepage">https://www.st.com/en/development-tools/stm32cubeprog.html</url>
+  <url type="bugtracker">https://community.st.com/t5/stm32cubeprogrammer-mcus/bd-p/stm32-mcu-cubeprogrammer-forum</url>
+  <url type="donation">https://www.st.com/en/development-tools/stm32cubeprog.html</url>
+  <project_group>STMicroelectronics</project_group>
+  <launchable type="desktop-id">com.st.STM32CubeProgrammer.desktop</launchable>
+  <releases>
+    <release version="2.23.0" date="2026-06-15"/>
+  </releases>
+  <categories>
+    <category>Development</category>
+    <category>Electronics</category>
+  </categories>
+  <keywords>
+    <keyword>stm32</keyword>
+    <keyword>stm32cubeprogrammer</keyword>
+    <keyword>cubeprog</keyword>
+    <keyword>programmer</keyword>
+    <keyword>flashing</keyword>
+    <keyword>debug</keyword>
+    <keyword>st-link</keyword>
+    <keyword>microcontroller</keyword>
+    <keyword>embedded</keyword>
+    <keyword xml:lang="zh-CN">烧录</keyword>
+    <keyword xml:lang="zh-CN">下载</keyword>
+    <keyword xml:lang="zh-CN">编程</keyword>
+    <keyword xml:lang="zh-CN">调试</keyword>
+    <keyword xml:lang="zh-CN">微控制器</keyword>
+    <keyword xml:lang="zh-CN">嵌入式</keyword>
+  </keywords>
+  <content_rating type="oars-1.1"/>
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </recommends>
+</component>

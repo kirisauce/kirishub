@@ -1,0 +1,135 @@
+id: com.st.STM32CubeProgrammer
+runtime: org.freedesktop.Platform
+runtime-version: '26.08'
+sdk: org.freedesktop.Sdk
+command: stm32cubeprogrammer
+separate-locales: false
+
+# The USB and serial devices are reachable through --device=all; talking to an ST-LINK probe as a
+# regular user additionally needs the bundled 49-stlinkv*.rules installed on the host.
+finish-args:
+  - --socket=x11
+  - --share=ipc
+  - --share=network
+  - --device=all
+  - --device=dri
+  - --filesystem=xdg-documents
+  - --filesystem=/run/pcscd
+  - --persist=.STM32CubeProgrammer
+  - --persist=.java
+
+modules:
+  - name: krb5
+    buildsystem: autotools
+    build-options:
+      no-debuginfo: true
+      no-debuginfo-compression: true
+    config-opts:
+      # krb5 promotes warnings to errors, including ones current GCC raises in its own sources.
+      - WARN_CFLAGS=
+      - --without-keyutils
+    cleanup:
+      - /bin
+      - /include
+      - /lib/pkgconfig
+      - /sbin
+      - /share/et
+      - /share/examples
+      - /share/locale
+      - /share/man
+      - /var
+    sources:
+      # Needed by libCubeProgrammer_API, the Qt6 network stack and the CLI, which all link GSSAPI.
+      - type: archive
+        strip-components: 2
+        url: https://kerberos.org/dist/krb5/1.22/krb5-1.22.2.tar.gz
+        sha256: 3243ffbc8ea4d4ac22ddc7dd2a1dc54c57874c40648b60ff97009763554eaf13
+
+  - name: pcsc-lite
+    buildsystem: meson
+    build-options:
+      no-debuginfo: true
+      no-debuginfo-compression: true
+    config-opts:
+      - -Dlibudev=false
+      - -Dlibsystemd=false
+      - -Dpolkit=false
+    # pcscd and its units are the host's business; the sandbox only needs the client library.
+    cleanup:
+      - /bin
+      - /etc/default
+      - /include
+      - /lib/pkgconfig
+      - /lib/systemd
+      - /sbin
+      - /share/doc
+      - /share/man
+      - /sysusers.d
+    sources:
+      # Needed by libstp11_SAM (PKCS#11/HSM support).
+      - type: archive
+        url: https://pcsclite.apdu.fr/files/pcsc-lite-2.5.2.tar.xz
+        sha256: 60a08942d8c00a1d86a3bf4c64eddbf7a5569c7c54f6904e3f07801bb5316acd
+        x-checker-data:
+          type: html
+          url: https://pcsclite.apdu.fr/files/
+          version-pattern: 'pcsc-lite-([\d\.]+)\.tar\.xz'
+          url-template: https://pcsclite.apdu.fr/files/pcsc-lite-$version.tar.xz
+
+  - name: stm32cubeprogrammer
+    buildsystem: simple
+    build-options:
+      no-debuginfo: true
+      no-debuginfo-compression: true
+      strip: false
+    build-commands:
+      - unzip -q SetupSTM32CubeProgrammer_linux_64.zip -d installer
+      - sed "s|@INSTALL_PATH@|${FLATPAK_DEST}/lib/stm32cubeprogrammer|" auto-install.xml > auto-install-resolved.xml
+      # The bundled Liberica JRE 8 drives the IzPack installer unattended; the installer's
+      # post-install scripts resolve `jre` relative to the working directory.
+      - mkdir -p installer/home
+      - cd installer && ./jre/bin/java -Duser.home="$PWD/home" -jar SetupSTM32CubeProgrammer-2.23.0.exe ../auto-install-resolved.xml
+      - rm -rf ${FLATPAK_DEST}/lib/stm32cubeprogrammer/uninstaller
+      - rm -f ${FLATPAK_DEST}/lib/stm32cubeprogrammer/.installationinformation
+      - python3 extract-icon.py installer/SetupSTM32CubeProgrammer-2.23.0.exe com.st.STM32CubeProgrammer.png
+      - install -Dm644 com.st.STM32CubeProgrammer.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/com.st.STM32CubeProgrammer.png
+      - install -Dm644 com.st.STM32CubeProgrammer.desktop ${FLATPAK_DEST}/share/applications/com.st.STM32CubeProgrammer.desktop
+      - install -Dm644 com.st.STM32CubeProgrammer.metainfo.xml ${FLATPAK_DEST}/share/metainfo/com.st.STM32CubeProgrammer.metainfo.xml
+      - install -Dm755 stm32cubeprogrammer ${FLATPAK_DEST}/bin/stm32cubeprogrammer
+      - install -Dm755 stm32cubeprogrammer-cli ${FLATPAK_DEST}/bin/stm32cubeprogrammer-cli
+      - install -Dm755 stm32trustedpackagecreator ${FLATPAK_DEST}/bin/stm32trustedpackagecreator
+      - install -Dm755 stm32trustedpackagecreator-cli ${FLATPAK_DEST}/bin/stm32trustedpackagecreator-cli
+    sources:
+      # STM32CubeProgrammer 2.23.0 for Linux (x86_64), the "STM32CubeProg-Linux" entry of the
+      # "Get Software" table on https://www.st.com.cn/content/st_com/zh/stm32cubeprogrammer.html#st-get-software.
+      # ST hands the archive out to authenticated MyST sessions only, so it is not fetched from a
+      # URL: download it from that page and place it next to this manifest. The archive is
+      # gitignored.
+      - type: file
+        path: SetupSTM32CubeProgrammer_linux_64.zip
+        only-arches:
+          - x86_64
+      - type: file
+        path: auto-install.xml
+      - type: file
+        path: extract-icon.py
+      - type: file
+        path: com.st.STM32CubeProgrammer.desktop
+      - type: file
+        path: com.st.STM32CubeProgrammer.metainfo.xml
+      - type: script
+        dest-filename: stm32cubeprogrammer
+        commands:
+          - exec /app/lib/stm32cubeprogrammer/bin/STM32CubeProgrammer "$@"
+      - type: script
+        dest-filename: stm32cubeprogrammer-cli
+        commands:
+          - exec /app/lib/stm32cubeprogrammer/bin/STM32_Programmer_CLI "$@"
+      - type: script
+        dest-filename: stm32trustedpackagecreator
+        commands:
+          - exec /app/lib/stm32cubeprogrammer/bin/STM32TrustedPackageCreator "$@"
+      - type: script
+        dest-filename: stm32trustedpackagecreator-cli
+        commands:
+          - exec /app/lib/stm32cubeprogrammer/bin/STM32TrustedPackageCreator_CLI "$@"
