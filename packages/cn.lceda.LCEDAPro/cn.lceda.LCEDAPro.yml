@@ -35,6 +35,10 @@ modules:
           - if test -n $WAYLAND_DISPLAY -a -z "$(echo "$@" | grep -- --ozone-platform)"; then
           -   flags="--ozone-platform=wayland $flags"
           - fi
+          # the app prints huge amounts of unsolicited debug to stdout/stderr
+          - if test ! -t 1 -a ! -t 2; then
+          -   exec >/dev/null 2>&1
+          - fi
           - exec zypak-wrapper /app/lib/lceda-pro/lceda-pro $flags "$@"
         dest-filename: lceda-pro-entry
 
