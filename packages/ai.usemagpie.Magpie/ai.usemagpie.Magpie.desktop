@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Magpie
+GenericName=AI Model Gateway
+Comment=Every agent's model. One place.
+Exec=magpie %u
+Icon=ai.usemagpie.Magpie
+Terminal=false
+Categories=Development;Utility;
+MimeType=x-scheme-handler/magpie;
+Keywords=magpie;ai;agent;model;gateway;llm;claude;codex;
+StartupNotify=true
+StartupWMClass=magpie

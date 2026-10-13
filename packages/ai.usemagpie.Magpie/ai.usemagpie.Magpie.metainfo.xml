@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>ai.usemagpie.Magpie</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>Magpie</name>
+  <summary>Every agent's model, in one place</summary>
+  <launchable type="desktop-id">ai.usemagpie.Magpie.desktop</launchable>
+  <description>
+    <p>Magpie keeps one local gateway for the AI agents installed on this machine. Pick the model each agent runs on from a single list — an API key, a local model, or a Claude, ChatGPT, Copilot, Gemini or Grok plan you are already signed in to — and Magpie rewrites that agent's own configuration file, keeping its comments and ordering.</p>
+    <p>Key features:</p>
+    <ul>
+      <li>One model picker for every agent, written into the agent's own config</li>
+      <li>A local gateway at 127.0.0.1:3425 speaking OpenAI Chat, OpenAI Responses, Anthropic Messages and Gemini</li>
+      <li>Providers from presets, custom base URLs, subscriptions and local servers</li>
+      <li>Routing groups that fail over between models and accounts when a quota runs out</li>
+      <li>Profiles that save and switch every agent's setup at once</li>
+      <li>Usage, cost, quota and session views</li>
+      <li>Plugins and gateway middleware</li>
+      <li>Menu bar panel, window, terminal UI, web UI and CLI in the same binary</li>
+    </ul>
+  </description>
+  <developer id="ai.usemagpie">
+    <name>magpie</name>
+  </developer>
+  <url type="homepage">https://usemagpie.ai</url>
+  <url type="bugtracker">https://github.com/yetone/magpie/issues</url>
+  <url type="help">https://usemagpie.ai/docs/start</url>
+  <url type="donation">https://usemagpie.ai</url>
+  <releases>
+    <release version="0.1.1227" date="2026-10-13"/>
+  </releases>
+  <categories>
+    <category>Development</category>
+    <category>Utility</category>
+  </categories>
+  <keywords>
+    <keyword>magpie</keyword>
+    <keyword>ai</keyword>
+    <keyword>agent</keyword>
+    <keyword>model</keyword>
+    <keyword>gateway</keyword>
+    <keyword>llm</keyword>
+  </keywords>
+  <content_rating type="oars-1.1"/>
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </recommends>
+</component>

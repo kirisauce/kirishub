@@ -1,0 +1,64 @@
+id: ai.usemagpie.Magpie
+runtime: org.gnome.Platform
+runtime-version: '51'
+sdk: org.gnome.Sdk
+command: magpie
+finish-args:
+  # the gateway listens on 127.0.0.1:3425 for the agents on this machine
+  - --share=network
+  # Wails shell (GTK 3 + WebKitGTK 4.1)
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --share=ipc
+  - --device=dri
+  # the agents magpie configures live in the home directory (~/.claude, ~/.codex,
+  # ~/.gemini …); magpie's own files stay under $XDG_CONFIG_HOME and $XDG_CACHE_HOME
+  - --filesystem=home
+  # the tray owns org.kde.StatusNotifierItem-<pid>-1, which no glob can grant;
+  # the keyring, portals and dconf go over the same bus
+  - --socket=session-bus
+  # light and dark from the host's dconf
+  - --filesystem=xdg-run/dconf:create
+  # WebKitGTK accessibility
+  - --talk-name=org.a11y.Bus
+  # no daily usage report
+  - --env=DO_NOT_TRACK=1
+modules:
+  - name: magpie
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 magpie ${FLATPAK_DEST}/bin/magpie
+      - install -Dm644 ai.usemagpie.Magpie.desktop ${FLATPAK_DEST}/share/applications/ai.usemagpie.Magpie.desktop
+      - install -Dm644 ai.usemagpie.Magpie.metainfo.xml ${FLATPAK_DEST}/share/metainfo/ai.usemagpie.Magpie.metainfo.xml
+      - install -Dm644 ai.usemagpie.Magpie.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/ai.usemagpie.Magpie.png
+    sources:
+      - type: file
+        url: https://github.com/yetone/magpie-releases/releases/download/v0.1.1228/magpie-linux-amd64
+        dest-filename: magpie
+        sha256: f9efeec2649826b125ab2e00a91819963e856934cee41fe6746f5e435652c497
+        only-arches:
+          - x86_64
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/yetone/magpie-releases/releases/latest
+          version-query: .tag_name | ltrimstr("v")
+          url-query: .assets[] | select(.name == "magpie-linux-amd64") | .browser_download_url
+      - type: file
+        url: https://github.com/yetone/magpie-releases/releases/download/v0.1.1228/magpie-linux-arm64
+        dest-filename: magpie
+        sha256: 2f68e267855322c818995d402bf43e9a26c0c531e7c5532aa9221e586b34566c
+        only-arches:
+          - aarch64
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/yetone/magpie-releases/releases/latest
+          version-query: .tag_name | ltrimstr("v")
+          url-query: .assets[] | select(.name == "magpie-linux-arm64") | .browser_download_url
+      - type: file
+        url: https://usemagpie.ai/img/icon-256.png
+        dest-filename: ai.usemagpie.Magpie.png
+        sha256: 57437c6596e05a8fcfc42d4288c030aa00ed86b69fe35d464d69d7026150c704
+      - type: file
+        path: ai.usemagpie.Magpie.desktop
+      - type: file
+        path: ai.usemagpie.Magpie.metainfo.xml
