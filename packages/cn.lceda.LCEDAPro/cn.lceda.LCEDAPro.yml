@@ -54,8 +54,8 @@ modules:
       - type: archive
         strip-components: 0
         only-arches: [x86_64]
-        url: https://image.lceda.cn/files/lceda-pro-linux-x64-3.2.186.zip
-        sha256: 4314e046e34d5eb02ca1ea44c5faf5cfc74d35e9a83a5e978287f27ed0bbb80a
+        url: https://image.lceda.cn/files/lceda-pro-linux-x64-4.1.78.zip
+        sha256: d437f7ae3541d16885430dd6480ac2f59dcad8df68307175f3fc17b2176bf60e
         x-checker-data:
           type: html
           url: https://lceda.cn/page/download
