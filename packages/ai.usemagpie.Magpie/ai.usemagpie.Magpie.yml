@@ -14,6 +14,9 @@ finish-args:
   # the agents magpie configures live in the home directory (~/.claude, ~/.codex,
   # ~/.gemini …); magpie's own files stay under $XDG_CONFIG_HOME and $XDG_CACHE_HOME
   - --filesystem=home
+  # host tools for the agents
+  - --filesystem=host-os
+  - --filesystem=/opt:ro
   # the tray owns org.kde.StatusNotifierItem-<pid>-1, which no glob can grant;
   # the keyring, portals and dconf go over the same bus
   - --socket=session-bus
@@ -27,7 +30,8 @@ modules:
   - name: magpie
     buildsystem: simple
     build-commands:
-      - install -Dm755 magpie ${FLATPAK_DEST}/bin/magpie
+      - install -Dm755 magpie ${FLATPAK_DEST}/lib/magpie/magpie
+      - install -Dm755 magpie-wrapper ${FLATPAK_DEST}/bin/magpie
       - install -Dm644 ai.usemagpie.Magpie.desktop ${FLATPAK_DEST}/share/applications/ai.usemagpie.Magpie.desktop
       - install -Dm644 ai.usemagpie.Magpie.metainfo.xml ${FLATPAK_DEST}/share/metainfo/ai.usemagpie.Magpie.metainfo.xml
       - install -Dm644 ai.usemagpie.Magpie.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/ai.usemagpie.Magpie.png
@@ -54,6 +58,11 @@ modules:
           url: https://api.github.com/repos/yetone/magpie-releases/releases/latest
           version-query: .tag_name | ltrimstr("v")
           url-query: .assets[] | select(.name == "magpie-linux-arm64") | .browser_download_url
+      - type: script
+        dest-filename: magpie-wrapper
+        commands:
+          - 'export PATH="${PATH:+$PATH:}/run/host/usr/local/sbin:/run/host/usr/local/bin:/run/host/usr/sbin:/run/host/usr/bin:/run/host/sbin:/run/host/bin"'
+          - 'exec /app/lib/magpie/magpie "$@"'
       - type: file
         url: https://usemagpie.ai/img/icon-256.png
         dest-filename: ai.usemagpie.Magpie.png
