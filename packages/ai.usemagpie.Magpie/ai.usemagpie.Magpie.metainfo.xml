@@ -28,6 +28,7 @@
   <url type="help">https://usemagpie.ai/docs/start</url>
   <url type="donation">https://usemagpie.ai</url>
   <releases>
+    <release version="0.1.1285" date="2026-10-17"/>
     <release version="0.1.1267" date="2026-10-16"/>
     <release version="0.1.1255" date="2026-10-15"/>
     <release version="0.1.1227" date="2026-10-13"/>
