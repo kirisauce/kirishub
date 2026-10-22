@@ -37,9 +37,9 @@ modules:
       - install -Dm644 ai.usemagpie.Magpie.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/ai.usemagpie.Magpie.png
     sources:
       - type: file
-        url: https://github.com/yetone/magpie-releases/releases/download/v0.1.1285/magpie-linux-amd64
+        url: https://github.com/yetone/magpie-releases/releases/download/v0.1.1324/magpie-linux-amd64
         dest-filename: magpie
-        sha256: 936ebaebbc2487a6f2a768df2917bccdb3c7e477800b744be53eac54e55e5760
+        sha256: dd53b448a8315f5d8f8944a4c457e2e889b5cc8ae9298988e69fde3c2fa97055
         only-arches:
           - x86_64
         x-checker-data:
@@ -48,9 +48,9 @@ modules:
           version-query: .tag_name | ltrimstr("v")
           url-query: .assets[] | select(.name == "magpie-linux-amd64") | .browser_download_url
       - type: file
-        url: https://github.com/yetone/magpie-releases/releases/download/v0.1.1285/magpie-linux-arm64
+        url: https://github.com/yetone/magpie-releases/releases/download/v0.1.1324/magpie-linux-arm64
         dest-filename: magpie
-        sha256: 5f1c552571503fbda79c4fa8f720959c1cdc752cdf0d9491e64967999ecc0411
+        sha256: c9a2e1264e71858ecea1be88f2ba9761a980c49139233e9d9694466b9c6927f3
         only-arches:
           - aarch64
         x-checker-data:
