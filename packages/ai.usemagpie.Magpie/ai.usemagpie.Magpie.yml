@@ -18,15 +18,23 @@ finish-args:
   - --filesystem=host-os
   - --filesystem=/opt:ro
 
-  - --filesystem=xdg-config/gtk-3.0:ro
-
   - --talk-name=org.a11y.Bus
   - --own-name=org.kde.*
   - --own-name=ai.usemagpie.app.*
 
   # no daily usage report
   - --env=DO_NOT_TRACK=1
+  - --env=GTK3_MODULES=/app/lib/gtk-3.0/modules/libmagpie-theme-follow.so
 modules:
+  - name: magpie-theme-follow
+    buildsystem: simple
+    build-commands:
+      - mkdir -p ${FLATPAK_DEST}/lib/gtk-3.0/modules
+      - gcc -shared -fPIC -O2 -o ${FLATPAK_DEST}/lib/gtk-3.0/modules/libmagpie-theme-follow.so theme-follow-module.c $(pkg-config --cflags --libs gtk+-3.0 gio-2.0)
+    sources:
+      - type: file
+        path: theme-follow-module.c
+
   - name: magpie
     buildsystem: simple
     build-commands:
