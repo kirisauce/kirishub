@@ -17,13 +17,13 @@ finish-args:
   # host tools for the agents
   - --filesystem=host-os
   - --filesystem=/opt:ro
-  # the tray owns org.kde.StatusNotifierItem-<pid>-1, which no glob can grant;
-  # the keyring, portals and dconf go over the same bus
-  - --socket=session-bus
-  # light and dark from the host's dconf
-  - --filesystem=xdg-run/dconf:create
-  # WebKitGTK accessibility
+
+  - --filesystem=xdg-config/gtk-3.0:ro
+
   - --talk-name=org.a11y.Bus
+  - --own-name=org.kde.*
+  - --own-name=ai.usemagpie.app.*
+
   # no daily usage report
   - --env=DO_NOT_TRACK=1
 modules:
