@@ -30,7 +30,8 @@ modules:
     buildsystem: simple
     build-commands:
       - mkdir -p ${FLATPAK_DEST}/lib/gtk-3.0/modules
-      - gcc -shared -fPIC -O2 -o ${FLATPAK_DEST}/lib/gtk-3.0/modules/libmagpie-theme-follow.so theme-follow-module.c $(pkg-config --cflags --libs gtk+-3.0 gio-2.0)
+      - gcc -shared -fPIC -O2 -o ${FLATPAK_DEST}/lib/gtk-3.0/modules/libmagpie-theme-follow.so
+        theme-follow-module.c $(pkg-config --cflags --libs gtk+-3.0 gio-2.0)
     sources:
       - type: file
         path: theme-follow-module.c
@@ -45,9 +46,9 @@ modules:
       - install -Dm644 ai.usemagpie.Magpie.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/ai.usemagpie.Magpie.png
     sources:
       - type: file
-        url: https://github.com/yetone/magpie-releases/releases/download/v0.1.1324/magpie-linux-amd64
+        url: https://github.com/yetone/magpie-releases/releases/download/v0.1.1564/magpie-linux-amd64
         dest-filename: magpie
-        sha256: dd53b448a8315f5d8f8944a4c457e2e889b5cc8ae9298988e69fde3c2fa97055
+        sha256: 56b863ceb2c1f506b0369e924526a9df882b3564937f29940b421d8beabb8c7e
         only-arches:
           - x86_64
         x-checker-data:
@@ -56,9 +57,9 @@ modules:
           version-query: .tag_name | ltrimstr("v")
           url-query: .assets[] | select(.name == "magpie-linux-amd64") | .browser_download_url
       - type: file
-        url: https://github.com/yetone/magpie-releases/releases/download/v0.1.1324/magpie-linux-arm64
+        url: https://github.com/yetone/magpie-releases/releases/download/v0.1.1564/magpie-linux-arm64
         dest-filename: magpie
-        sha256: c9a2e1264e71858ecea1be88f2ba9761a980c49139233e9d9694466b9c6927f3
+        sha256: 90f591f5187326a92ef9f2f70c89a3534a2435f7387385651c974945257ebcae
         only-arches:
           - aarch64
         x-checker-data:
